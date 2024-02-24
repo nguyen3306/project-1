@@ -18,11 +18,11 @@ return new class extends Migration
             $table->integer('seat');
             $table->integer('status')->default('1');
             $table->integer('date');
+            $table->unsignedBigInteger('cate_id');
             $table->foreign('cate_id')->references('id')->on('category')->onDelete('cascade');
             $table->string('description');
             $table->integer('price');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');   
+            $table->timestamps();
         });
     }
 

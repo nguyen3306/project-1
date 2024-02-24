@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('path');
-            $table->foreign('car_id')->references('id')->on('car')->onDelete('cascade');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');        
+            $table->unsignedBigInteger('car_id');
+            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

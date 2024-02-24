@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category', function (Blueprint $table) {
+        Schema::create('voucher', function (Blueprint $table) {
             $table->id();
-            $table->string('cate_name');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
+            $table->string('voucher_name');
+            $table->bigInteger('voucher_value');
+            $table->timestamps();
+
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category');
+        Schema::dropIfExists('voucher');
     }
 };

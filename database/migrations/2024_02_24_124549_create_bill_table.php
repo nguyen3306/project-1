@@ -13,18 +13,21 @@ return new class extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('car_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('car_id')->references('id')->on('car')->onDelete('cascade');
-            $table->datetimes('start_date');
-            $table->datetimes('end_date');
+            $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->integer('extra_hours');
             $table->bigInteger('total');
+            $table->unsignedBigInteger('voucher_id');
             $table->foreign('voucher_id')->references('id')->on('voucher')->onDelete('cascade');
             $table->bigInteger('voucher_value');
-            $table->foreign('order_id')->references('id')->on('oders')->onDelete('cascade');
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->bigInteger('code');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
+            $table->timestamps();
         });
     }
 
