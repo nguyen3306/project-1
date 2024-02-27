@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('brand');
             $table->integer('seat');
             $table->integer('status')->default('1');
-            $table->integer('date');
+            $table->dateTime('date');
             $table->unsignedBigInteger('cate_id');
             $table->foreign('cate_id')->references('id')->on('category')->onDelete('cascade');
             $table->string('description');
-            $table->integer('price');
+            $table->bigInteger('price');
             $table->timestamps();
         });
     }
