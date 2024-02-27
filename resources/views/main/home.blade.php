@@ -17,6 +17,7 @@
                                 <th scope="col">Tên loại</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Ngày tạo</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
