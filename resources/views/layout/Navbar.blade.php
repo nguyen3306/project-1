@@ -41,6 +41,8 @@
 
                 @yield('home')
 
+                <button type="submit" class="btn btn-primary" id="modalbtn">Thêm</button>
+
                 {{-- @yield('role') --}}
 
                 {{-- @yield('schedule') --}}
@@ -78,14 +80,14 @@
 
 
 
-                                    
+
                                     <div class="user-name">Túpac Amaru</div>
                                     <div class="user-position online">Available</div>
                                 </div><a class="dropdown-item" href="pages-profile.html"><span
                                         class="icon mdi mdi-face"></span>Account</a><a class="dropdown-item"
                                     href="#"><span class="icon mdi mdi-settings"></span>Settings</a><a
-                                    class="dropdown-item" href="/logout"><span
-                                        class="icon mdi mdi-power"></span>Đăng xuất</a>
+                                    class="dropdown-item" href="/logout"><span class="icon mdi mdi-power"></span>Đăng
+                                    xuất</a>
                             </div>
                         </li>
                     </ul>
@@ -109,7 +111,8 @@
                                                             <div class="notification-info">
                                                                 <div class="text"><span class="user-name">Jessica
                                                                         Caruso</span> accepted your invitation to join
-                                                                    the team.</div><span class="date">2 min ago</span>
+                                                                    the team.</div><span class="date">2 min
+                                                                    ago</span>
                                                             </div>
                                                         </a></li>
                                                     <li class="notification"><a href="#">
@@ -182,7 +185,7 @@
                             </ul>
                         </li>
                     </ul>
-                
+
 
 
 
@@ -506,6 +509,75 @@
 
 
                 {{-- ===============================END CONTENT================================================== --}}
+
+
+
+
+
+
+                {{-- ===============================modal================================================== --}}
+                <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Thêm thông tin</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/action_page.php">
+                                    <div class="mb-3 mt-3">
+                                        <input type="text" class="form-control" id="addform"
+                                            placeholder="Nhập thông tin" >
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Đóng</button>
+                                <button type="button" class="btn btn-primary" id="submitbtn">Thêm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {{-- ===============================END modal================================================== --}}
                 <nav class="be-right-sidebar">
                     <div class="sb-content">
                         <div class="tab-navigation">
@@ -815,6 +887,20 @@
             }
         });
     });
-    
+
+
+
+    $(document).ready(function () {
+        openModal();
+    });
+
+
+    function openModal() {
+        $('#modalbtn').click(function (e) { 
+            e.preventDefault();
+            $('#Modal').modal('show');
+        });
+    }
 </script>
+
 </html>

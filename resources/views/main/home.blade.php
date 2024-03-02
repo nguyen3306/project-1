@@ -1,10 +1,5 @@
 @extends('layout.Navbar')
 @section('main')
-
-    <div class="container">
-        <input type="text" placeholder="category" id="catename">
-        <button class="submit">submit</button>
-    </div>
     {{-- Container --}}
     <div class="container">
         <div class="row">
@@ -15,7 +10,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Tên loại</th>
-                                <th scope="col">Status</th>
+                                {{-- <th scope="col">Status</th> --}}
                                 <th scope="col">Ngày tạo</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -28,7 +23,7 @@
                                         <span class="editCateName pointer"
                                             data-id="{{ $item->id }}">{{ $item->name }}</span>
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                         <select name="" id="" class="form-control switchRole pointer"
                                             data-id="{{ $item->id }}">
                                             @if ($item->status == 0)
@@ -39,7 +34,7 @@
                                                 <option value="1" selected>Đang mở</option>
                                             @endif
                                         </select>
-                                    </td>
+                                    </td> --}}
                                     <td>{{ $item->created_at }}</td>
                                     <td>
                                         <button class="btn btn-danger deleteCatebtn"
@@ -72,7 +67,7 @@
             toast: true,
             position: "top-end",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 1000,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.onmouseenter = Swal.stopTimer;
@@ -80,10 +75,11 @@
             }
         });
 
+
         function addCate() {
-            $('.submit').click(function(e) {
+            $('#submitbtn').click(function(e) {
                 e.preventDefault();
-                var cate = $('#catename').val().trim();
+                var cate = $('#addform').val().trim();
                 if (cate == '') {
 
                     Swal.fire({
@@ -93,7 +89,6 @@
                         confirmButtonText: 'Cool'
                     })
                 } else {
-                    console.log(cate);
                     $.ajax({
                         type: "post",
                         url: "/api/addcate",
@@ -131,34 +126,46 @@
             $('.deleteCatebtn').click(function(e) {
                 e.preventDefault();
                 var id = $(this).attr('data-id');
-                $.ajax({
-                    type: "post",
-                    url: "/api/deleteCate",
-                    data: {
-                        id: id
-                    },
-                    dataType: "JSON",
-                    success: function(res) {
-                        if (res.check == true) {
-                            Swal.fire({
-                                title: 'Thành công',
-                                text: 'Đã xóa loại xe',
-                                icon: 'success',
-                                confirmButtonText: 'xác nhận'
-                            }).then(() => {
-                                window.location.reload();
-                            })
-                        } else {
-                            Swal.fire({
-                                title: 'Xóa thất bại',
-                                text: res.msg,
-                                icon: 'error',
-                                confirmButtonText: 'Cool'
-                            })
-                        }
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "post",
+                            url: "/api/deleteCate",
+                            data: {
+                                id: id
+                            },
+                            dataType: "JSON",
+                            success: function(res) {
+                                if (res.check == true) {
+                                    Swal.fire({
+                                        title: "Đã xóa thành công",
+                                        text: "",
+                                        icon: "success"
+                                    }).then(() => {
+                                        window.location.reload()
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: "Xóa thất bại",
+                                        text: res.msg,
+                                        icon: "error"
+                                    });
+                                }
+
+                            }
+                        });
 
                     }
                 });
+
             });
         }
     </script>
