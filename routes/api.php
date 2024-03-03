@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Category;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 Route::controller(Category::class)->group(function(){
-    Route::post('/addcate','create');
-    Route::post('/deleteCate', 'destroy');
+    Route::post('/addcate','store');
+    Route::delete('/deleteCate', 'destroy');
+    Route::post('/updateCate', 'update');
+    
+    // Route::delete('{formId}/delete', [AbcController::class, 'delete'])->name('delete');
+});
 
+Route::controller(UserController::class)->group(function () {
+    Route::post('/CreateUser','store');
 });

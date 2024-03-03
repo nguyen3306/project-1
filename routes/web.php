@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Category;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('main.home');
 // });
 Route::controller(Category::class)->group(function () {
-    Route::get('/', 'index');
+    Route::get('/cate', 'index');
     // Route::post('/users', 'store');
     // Route::get('/logout', 'logout');
-
+    
 });
+Route::controller(UserController::class)->group(function () {
+    Route::get('/users','index');
+});
+// Route::get('users/index/abc', [ABCController::class, 'index'])->name('users.abc');        
+// {{route("users.abc")}};

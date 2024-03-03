@@ -19,12 +19,14 @@
     <link rel="stylesheet" type="text/css" href="assets\lib\datetimepicker\css\bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="assets\css\app.css" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -37,13 +39,23 @@
                 <div class="be-navbar-header"><a class="navbar-brand" href="index.html"></a>
                 </div>
 
-                <div class="page-title"><span>Dashboard</span></div>
+                <div class="page-title"><span>
+                        @yield('Cate')
 
-                @yield('home')
+                        @yield('Users')
 
-                <button type="submit" class="btn btn-primary" id="modalbtn">Thêm</button>
 
-                {{-- @yield('role') --}}
+
+                    </span></div>
+
+
+            
+                @yield('Category')
+
+
+                @yield('user')
+
+                
 
                 {{-- @yield('schedule') --}}
 
@@ -209,12 +221,31 @@
                                 <li class="active"><a href="index.html"><i
                                             class="icon mdi mdi-home"></i><span>Dashboard</span></a>
                                 </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 <li class="parent"><a href="#"><i class="icon mdi mdi-face"></i><span>UI
                                             Elements</span></a>
                                     <ul class="sub-menu">
-                                        <li><a href="/users">User</a>
+                                        <li><a href="/users">Users</a>
                                         </li>
-                                        <li><a href="/role">Role</a>
+                                        <li><a href="/cate">Category</a>
                                         </li>
                                         <li><a href="/schedule">Schedule</a>
                                         </li>
@@ -455,10 +486,10 @@
                     </div>
                 </div>
                 <div class="progress-widget">
-                    <div class="progress-data"><span class="progress-value">60%</span><span class="name">Current
+                    <div class="progress-data"><span class="progress-value">10%</span><span class="name">Current
                             Project</span></div>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-primary" style="width: 60%;"></div>
+                        <div class="progress-bar progress-bar-primary" style="width: 10%;"></div>
                     </div>
                 </div>
             </div>
@@ -516,12 +547,12 @@
 
 
                 {{-- ===============================modal================================================== --}}
-                <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                {{-- <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Thêm thông tin</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">Thêm thông tin</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -529,19 +560,21 @@
                                 <form action="/action_page.php">
                                     <div class="mb-3 mt-3">
                                         <input type="text" class="form-control" id="addform"
-                                            placeholder="Nhập thông tin" >
+                                            placeholder="Nhập thông tin">
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
+                                <button type="button" class="closemodal btn btn-secondary"
                                     data-bs-dismiss="modal">Đóng</button>
                                 <button type="button" class="btn btn-primary" id="submitbtn">Thêm</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
+                <!-- Modal -->
+                
 
 
 
@@ -888,19 +921,19 @@
         });
     });
 
-
-
-    $(document).ready(function () {
-        openModal();
-    });
-
-
-    function openModal() {
-        $('#modalbtn').click(function (e) { 
-            e.preventDefault();
-            $('#Modal').modal('show');
+    const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
         });
-    }
+
+    
 </script>
 
 </html>
