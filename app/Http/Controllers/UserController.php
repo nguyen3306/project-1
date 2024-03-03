@@ -34,10 +34,9 @@ class UserController extends Controller
         $data = [
             'name' => $request->name,
             'email' => $request->email,
-            // 'idRole' => $request->idRole,
+            'role_id' => $request->Roleid,
             'password' => $request->password,
         ];
-        dd($data);
         User::create($data);
         return response()->json(['check' => true]);
     }

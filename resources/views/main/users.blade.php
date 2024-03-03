@@ -71,17 +71,17 @@
                     <form action="/action_page.php">
                         <div class="mb-3 mt-3">
                             Tên
-                            <input type="text" class="form-control" id="name" placeholder="Họ và tên">
+                            <input type="text" class="form-control" id="UserName" placeholder="Họ và tên">
                             Email
-                            <input type="text" class="form-control" id="email" placeholder="vd: exam@gmail.com">
+                            <input type="text" class="form-control" id="UserEmail" placeholder="vd: exam@gmail.com">
                             Mật khẩu
-                            <input type="text" class="form-control" id="password" placeholder="Chữ và số">
+                            <input type="text" class="form-control" id="UserPassword" placeholder="Chữ và số">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="closemodal btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="submitbtn">Thêm</button>
+                    <button type="button" class="btn btn-primary" id="submitUser">Thêm</button>
                 </div>
             </div>
         </div>
@@ -98,12 +98,13 @@
         function addUser() {
             $('#userModalbtn').click(function(e) {
                 e.preventDefault();
-                alert('hi');
                 $('#addUserModal').modal('show');
-                var name = $('#name').val().trim();
-                var email = $('#email').val().trim();
-                var password = $('#password').val().trim();
-                $('#submitbtn').click(function(e) {
+                
+                $('#submitUser').click(function(e) {
+                    var name = $('#UserName').val().trim();
+                var Roleid = ('1');
+                var email = $('#UserEmail').val().trim();
+                var password = $('#UserPassword').val().trim();
                     console.log(name);
                     console.log(email);
                     console.log(password);
@@ -113,6 +114,8 @@
                         url: "/api/CreateUser",
                         data: {
                             name: name,
+                            Roleid: Roleid,
+                            // phone: ,
                             email: email,
                             password: password
                         },
