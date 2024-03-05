@@ -53,7 +53,7 @@ class Category extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CateModel $cateModel)
+    public function show()
     {
         //
     }
@@ -61,7 +61,7 @@ class Category extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CateModel $cateModel)
+    public function edit()
     {
         //
     }
@@ -69,16 +69,17 @@ class Category extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCateRequest $request, CateModel $cateModel)
+    public function update ($id, UpdateCateRequest $request)
     {
-        CateModel::where('id', $request->id)->update(['name' => $request->newCate, 'created_at' => now()]);
+        // dd($request->all(),$id);
+        CateModel::where('id', $id)->update(['name' => $request->newCate]);
         return response()->json(['check' => true]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CateModel $cateModel, request $request)
+    public function destroy(Request $request)
     {
 
         $Category = CateModel::where('id', $request->id)->first();

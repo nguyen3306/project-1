@@ -225,22 +225,26 @@
             $('.editCateName').click(function(e) {
                 e.preventDefault();
                 $('#editModal').modal('show');
-                var Cate = $(this).attr('value-data');
-                var id = $(this).attr('data-id');
-                $('#editForm').val(Cate);
-                console.log(Cate);
-                $('#confirm').click(function(e) {
+
+                // $('#confirm').click(function(e) {
+
                     // e.stopPropagation();
                     // e.stopImmediatePropagation();
                     e.preventDefault();
+                    $('editForm').val('');
+                    var id = $(this).attr('data-id');
+                    console.log(id);
+                    var Cate = $(this).attr('value-data');
+                    $('#editForm').val(Cate);
+                    console.log(Cate);
                     var newCate = $('#editForm').val().trim();
-                    var idCate = id;
                     console.log(newCate);
+                    let url_ = `/api/${id}/updateCate`;
+                    console.log(url_);
                     $.ajax({
                         type: "post",
-                        url: '/api/updateCate',
+                        url: url_,
                         data: {
-                            id: idCate,
                             newCate: newCate
                         },
                         dataType: "json",
@@ -263,13 +267,8 @@
                             }
                         }
                     });
-
-                });
-                $('.closemodalCate').click(function(e) {
-                    e.preventDefault();
-                    $('#editForm').val('');
-                    var id = '';
-                });
+                // });
+                
             });
         }
 
@@ -282,11 +281,11 @@
         // }
 
         function closeModal() {
-        $('.closemodal').click(function(e) {
-            e.preventDefault();
-            $('#addCate').val('');
-        });
-    }
+            $('.closemodal').click(function(e) {
+                e.preventDefault();
+                $('#addCate').val('');
+            });
+        }
     </script>
 
     </html>

@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(Category::class)->group(function(){
     Route::post('/addcate','store');
     Route::delete('/deleteCate', 'destroy');
-    Route::post('/updateCate', 'update');
+    Route::post('/{id}/updateCate', 'update');
     
     // Route::delete('{formId}/delete', [AbcController::class, 'delete'])->name('delete');
 });

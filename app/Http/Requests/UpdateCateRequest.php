@@ -23,7 +23,6 @@ class UpdateCateRequest extends FormRequest
     {
         return [
             'newCate' => 'required|string|max:255|unique:category,name',
-            'id' =>'required|exists:Category,id'
         ];
     }
 
