@@ -105,7 +105,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="closemodalCate btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="confirm">Thêm</button>
+                    <button type="button" class="btn btn-primary" id="modal-save">Save changes</button>
                 </div>
             </div>
         </div>
@@ -222,54 +222,115 @@
         }
 
         function UpdateCate() {
-            $('.editCateName').click(function(e) {
-                e.preventDefault();
+            // $('.editCateName').on('click', function() {
+            $('.editCateName').on('click', function() {
                 $('#editModal').modal('show');
-
-                // $('#confirm').click(function(e) {
-
-                    // e.stopPropagation();
-                    // e.stopImmediatePropagation();
-                    e.preventDefault();
-                    $('editForm').val('');
-                    var id = $(this).attr('data-id');
-                    console.log(id);
-                    var Cate = $(this).attr('value-data');
-                    $('#editForm').val(Cate);
-                    console.log(Cate);
-                    var newCate = $('#editForm').val().trim();
-                    console.log(newCate);
-                    let url_ = `/api/${id}/updateCate`;
-                    console.log(url_);
-                    $.ajax({
-                        type: "post",
-                        url: url_,
-                        data: {
-                            newCate: newCate
-                        },
-                        dataType: "json",
-                        success: function(res) {
-                            if (res.check == true) {
-                                Swal.fire({
-                                        title: "Chỉnh sửa thành công",
-                                        text: "",
-                                        icon: "success"
-                                    })
-                                    .then(() => {
-                                        window.location.reload()
-                                    });
-                            } else {
-                                Swal.fire({
-                                    title: "Chỉnh sửa thành công",
-                                    text: "",
-                                    icon: "success"
-                                })
-                            }
-                        }
-                    });
-                // });
+               
                 
+                // });
             });
+            // e.preventDefault();
+            $('#modal-save').click(function (e) {
+                e.preventDefault();
+                let newCate = $('#editForm').val().trim();
+                console.log(newCate);
+                var id = $(this).attr('data-id');
+                let url_ = `/api/${id}/updateCate`;
+                console.log(id);
+                //     $.ajax({
+                //     type: "post",
+                //     url: url_,
+                //     data: {
+                //         newCate: newCate
+                //     },
+                //     dataType: "json",
+                //     success: function(res) {
+                //         if (res.check == true) {
+                //             Swal.fire({
+                //                     title: "Chỉnh sửa thành công",
+                //                     text: "",
+                //                     icon: "success"
+                //                 })
+                //                 .then(() => {
+                //                     window.location.reload()
+                //                 });
+                //         } else {
+                //             Swal.fire({
+                //                 title: "Chỉnh sửa thành công",
+                //                 text: "",
+                //                 icon: "success"
+                //             })
+                //         }
+                //     }
+                // });
+            });
+            
+
+
+            // $.confirm({
+            //     width: 'auto',
+            //     title: 'confirm',
+            //     content: 'bạn có muốn update không',
+            //     type: 'red',
+            //     typeAnimated: true,
+            //     buttons: {
+            //         tryAgain: {
+            //             text: 'create',
+            //             action: function() {
+            //                 var newCate = $('#editForm').val().trim();
+            //                 console.log('newCate: ', newCate);
+            //                 // let ajaxOption = {
+
+            //                 // };
+            //                 // $.ajax(ajaxOption);
+            //             }
+            //         },
+            //         close: {
+            //             text: 'cancel',
+            //             action: function() {}
+            //         },
+            //     }
+
+                // e.stopPropagation();
+                // e.stopImmediatePropagation();
+                // e.preventDefault();
+                // $('editForm').val('');
+                // console.log(id);
+                // var Cate = $(this).attr('value-data');
+                // $('#editForm').val(Cate);
+                // console.log(Cate);
+                // console.log(newCate);
+                // let url_ = `/api/${id}/updateCate`;
+                // console.log(url_);
+                // $.ajax({
+                //     type: "post",
+                //     url: url_,
+                //     data: {
+                //         newCate: newCate
+                //     },
+                //     dataType: "json",
+                //     success: function(res) {
+                //         if (res.check == true) {
+                //             Swal.fire({
+                //                     title: "Chỉnh sửa thành công",
+                //                     text: "",
+                //                     icon: "success"
+                //                 })
+                //                 .then(() => {
+                //                     window.location.reload()
+                //                 });
+                //         } else {
+                //             Swal.fire({
+                //                 title: "Chỉnh sửa thành công",
+                //                 text: "",
+                //                 icon: "success"
+                //             })
+                //         }
+                //     }
+                // });
+            // });
+
+        // });
         }
 
         // function closeModal() {
