@@ -13,41 +13,42 @@
                 <div class="table-responsive">
                     <table class="table table-primary">
                         <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Tên loại</th>
-                                {{-- <th scope="col">Status</th> --}}
-                                <th scope="col">Ngày tạo</th>
-                                <th scope="col">Action</th>
-                            </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tên loại</th>
+                            {{-- <th scope="col">Status</th> --}}
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Action</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            @foreach ($cate as $key => $item)
-                                <tr class="">
-                                    <td scope="row">{{ ++$key }}</td>
-                                    <td>
-                                        <span class="editCateName pointer" data-id="{{ $item->id }}"
-                                            value-data="{{ $item->name }}">{{ $item->name }}</span>
-                                    </td>
-                                    {{-- <td>
-                                        <select name="" id="" class="form-control switchRole pointer"
-                                            data-id="{{ $item->id }}">
-                                            @if ($item->status == 0)
-                                                <option value="0" selected>Đang khóa</option>
-                                                <option value="1">Đang mở</option>
-                                            @else
-                                                <option value="0">Đang khóa</option>
-                                                <option value="1" selected>Đang mở</option>
-                                            @endif
-                                        </select>
-                                    </td> --}}
-                                    <td>{{ $item->created_at }}</td>
-                                    <td>
-                                        <button class="btn btn-danger deleteCatebtn"
-                                            data-id="{{ $item->id }}">Xóa</button>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach ($cate as $key => $item)
+                            <tr data-toggle="modal" data-target="#editModal" class="editCateName pointer"
+                                data-id="{{ $item->id }}" data-value="{{ $item->name }}">
+                                <td scope="row">{{ ++$key }}</td>
+                                <td>
+                                    {{ $item->name }}
+                                </td>
+                                {{-- <td>
+                                    <select name="" id="" class="form-control switchRole pointer"
+                                        data-id="{{ $item->id }}">
+                                        @if ($item->status == 0)
+                                            <option value="0" selected>Đang khóa</option>
+                                            <option value="1">Đang mở</option>
+                                        @else
+                                            <option value="0">Đang khóa</option>
+                                            <option value="1" selected>Đang mở</option>
+                                        @endif
+                                    </select>
+                                </td> --}}
+                                <td>{{ $item->created_at }}</td>
+                                <td>
+                                    <button class="btn btn-danger deleteCatebtn"
+                                            data-id="{{ $item->id }}">Xóa
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -63,7 +64,7 @@
     <!-- Modal -->
 
     <div class="modal fade" id="Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -71,9 +72,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/action_page.php">
+                    <form>
                         <div class="mb-3 mt-3">
-                            <input type="text" class="form-control" id="addCate" placeholder="Nhập thông tin">
+                            <input type="text" class="form-control addCate" id="addCate" name="addCate"
+                                   placeholder="Nhập thông tin">
                         </div>
                     </form>
                 </div>
@@ -87,25 +89,29 @@
 
 
 
-    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1"
+         data-bs-backdrop="" data-bs-keyboard="false"
+         role="dialog"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Hãy nhập tên mới</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/action_page.php">
+                    <form>
                         <div class="mb-3 mt-3">
                             <input type="text" class="form-control" id="editForm" placeholder="Nhập thông tin"
-                                value="">
+                                   value="">
+                            <input type="text" class="form-control" id="editFormId" placeholder="Nhập thông tin"
+                                   hidden=""
+                                   value="">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="closemodalCate btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="modal-save">Save changes</button>
+                    <button type="button" class="closemodalCate btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="confirm">Thêm</button>
                 </div>
             </div>
         </div>
@@ -117,7 +123,7 @@
 
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             addCate();
             deleteRole();
             UpdateCate();
@@ -137,13 +143,14 @@
         });
 
         function addCate() {
-            $('#addCate').click(function(e) {
+            $('#addCate').click(function (e) {
                 e.preventDefault();
                 $('#Modal').modal('show');
             });
-            $('#submitbtn').click(function(e) {
+            $('#submitbtn').on('click', function (e) {
                 e.preventDefault();
-                var cate = $('#addCate').val().trim();
+                var cate = $('.addCate').val().trim();
+                console.log('cate: ', cate)
                 $.ajax({
                     type: "post",
                     url: "/api/addcate",
@@ -151,19 +158,19 @@
                         cate: cate
                     },
                     dataType: "json",
-                    success: function(res) {
+                    success: function (res) {
                         console.log(res);
                         if (res.check == true) {
                             Toast.fire({
-                                    icon: "success",
-                                    title: "thêm loại xe thành công"
-                                })
+                                icon: "success",
+                                title: "thêm loại xe thành công"
+                            })
                                 .then(() => {
                                     window.location.reload();
                                 })
                         }
                     },
-                    error: function(data) {
+                    error: function (data) {
                         Toast.fire({
                             icon: "error",
                             title: data.responseJSON.message
@@ -174,7 +181,7 @@
         }
 
         function deleteRole() {
-            $('.deleteCatebtn').click(function(e) {
+            $('.deleteCatebtn').click(function (e) {
                 e.preventDefault();
                 var id = $(this).attr('data-id');
                 Swal.fire({
@@ -195,7 +202,7 @@
                                 id: id
                             },
                             dataType: "JSON",
-                            success: function(res) {
+                            success: function (res) {
                                 if (res.check == true) {
                                     Swal.fire({
                                         title: "Đã xóa thành công",
@@ -207,7 +214,7 @@
                                 }
 
                             },
-                            error: function(data) {
+                            error: function (data) {
                                 Toast.fire({
                                     icon: "error",
                                     title: data.responseJSON.message
@@ -222,127 +229,48 @@
         }
 
         function UpdateCate() {
-            // $('.editCateName').on('click', function() {
-            $('.editCateName').on('click', function() {
+            $(document).on('click', '.editCateName', function () {
+                $('#editForm').val($(this).attr('data-value'));
+                $('#editFormId').val($(this).attr('data-id'));
                 $('#editModal').modal('show');
-               
-                
-                // });
             });
-            // e.preventDefault();
-            $('#modal-save').click(function (e) {
-                e.preventDefault();
-                let newCate = $('#editForm').val().trim();
-                console.log(newCate);
-                var id = $(this).attr('data-id');
+
+            $('.modal-footer').on('click', '#confirm', function () {
+                var id = $("#editFormId").val().trim();
                 let url_ = `/api/${id}/updateCate`;
-                console.log(id);
-                //     $.ajax({
-                //     type: "post",
-                //     url: url_,
-                //     data: {
-                //         newCate: newCate
-                //     },
-                //     dataType: "json",
-                //     success: function(res) {
-                //         if (res.check == true) {
-                //             Swal.fire({
-                //                     title: "Chỉnh sửa thành công",
-                //                     text: "",
-                //                     icon: "success"
-                //                 })
-                //                 .then(() => {
-                //                     window.location.reload()
-                //                 });
-                //         } else {
-                //             Swal.fire({
-                //                 title: "Chỉnh sửa thành công",
-                //                 text: "",
-                //                 icon: "success"
-                //             })
-                //         }
-                //     }
-                // });
+                var newCate = $("#editForm").val().trim();
+                console.log('id: ', id)
+                console.log('newCate: ', newCate)
+                $.ajax({
+                    type: "post",
+                    url: url_,
+                    data: {
+                        newCate: newCate
+                    },
+                    dataType: "json",
+                    success: function (res) {
+                        if (res.check == true) {
+                            Swal.fire({
+                                title: "Chỉnh sửa thành công",
+                                text: "",
+                                icon: "success"
+                            })
+                                .then(() => {
+                                    window.location.reload()
+                                });
+                        } else {
+                            Swal.fire({
+                                title: "Chỉnh sửa thành công",
+                                text: "",
+                                icon: "success"
+                            })
+                        }
+                    }
+                });
             });
-            
-
-
-            // $.confirm({
-            //     width: 'auto',
-            //     title: 'confirm',
-            //     content: 'bạn có muốn update không',
-            //     type: 'red',
-            //     typeAnimated: true,
-            //     buttons: {
-            //         tryAgain: {
-            //             text: 'create',
-            //             action: function() {
-            //                 var newCate = $('#editForm').val().trim();
-            //                 console.log('newCate: ', newCate);
-            //                 // let ajaxOption = {
-
-            //                 // };
-            //                 // $.ajax(ajaxOption);
-            //             }
-            //         },
-            //         close: {
-            //             text: 'cancel',
-            //             action: function() {}
-            //         },
-            //     }
-
-                // e.stopPropagation();
-                // e.stopImmediatePropagation();
-                // e.preventDefault();
-                // $('editForm').val('');
-                // console.log(id);
-                // var Cate = $(this).attr('value-data');
-                // $('#editForm').val(Cate);
-                // console.log(Cate);
-                // console.log(newCate);
-                // let url_ = `/api/${id}/updateCate`;
-                // console.log(url_);
-                // $.ajax({
-                //     type: "post",
-                //     url: url_,
-                //     data: {
-                //         newCate: newCate
-                //     },
-                //     dataType: "json",
-                //     success: function(res) {
-                //         if (res.check == true) {
-                //             Swal.fire({
-                //                     title: "Chỉnh sửa thành công",
-                //                     text: "",
-                //                     icon: "success"
-                //                 })
-                //                 .then(() => {
-                //                     window.location.reload()
-                //                 });
-                //         } else {
-                //             Swal.fire({
-                //                 title: "Chỉnh sửa thành công",
-                //                 text: "",
-                //                 icon: "success"
-                //             })
-                //         }
-                //     }
-                // });
-            // });
-
-        // });
         }
-
-        // function closeModal() {
-        //     $('.closemodalCate').click(function(e) {
-        //         e.preventDefault();
-        //         $('#editForm').val('');
-        //         // var id = '';
-        //     });
-        // }
-
         function closeModal() {
-            $('.closemodal').click(function(e) {
+            $('.closemodal').click(function (e) {
                 e.preventDefault();
                 $('#addCate').val('');
             });
