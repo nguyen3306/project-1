@@ -12,6 +12,12 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function index()
+    {
+        // $role = UserRoleModel::where('status', 1)->get();
+        // $user = DB::table('users')->join('role_tbl', 'users.idRole', '=', 'role_tbl.id')->select('users.*', 'role_tbl.name as rolename')->get();
+        // return view("main.user", compact("role", "user"));
+    }
     /**
      * The attributes that are mass assignable.
      *

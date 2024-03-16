@@ -23,10 +23,11 @@
                         </thead>
                         <tbody>
                         @foreach ($cate as $key => $item)
-                            <tr data-toggle="modal" data-target="#editModal" class="editCateName pointer"
-                                data-id="{{ $item->id }}" data-value="{{ $item->name }}">
+                            <tr>
                                 <td scope="row">{{ ++$key }}</td>
-                                <td>
+                                <td data-toggle="modal" data-target="#editModal" class="editCateName pointer"
+                                data-id="{{ $item->id }}" data-value="{{ $item->name }}">
+                                    
                                     {{ $item->name }}
                                 </td>
                                 {{-- <td>
@@ -56,11 +57,7 @@
         </div>
     </div>
     {{-- ================================== --}}
-    <!-- Button trigger modal -->
-    {{-- <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#editModal">
-        Launch
-    </button> --}}
-
+    
     <!-- Modal -->
 
     <div class="modal fade" id="Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -68,7 +65,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Thêm thông tin</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Update</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -96,7 +93,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Hãy nhập tên mới</h5>
+                    <h5 class="modal-title" id="">Hãy nhập tên mới</h5>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -111,7 +108,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="closemodalCate btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="confirm">Thêm</button>
+                    <button type="button" class="btn btn-primary" id="confirm" >Thêm</button>
                 </div>
             </div>
         </div>
@@ -125,9 +122,9 @@
     <script>
         $(document).ready(function () {
             addCate();
-            deleteRole();
+            deleteCate();
             UpdateCate();
-            closeModal();
+            // closeModal();
         });
 
         const Toast = Swal.mixin({
@@ -153,7 +150,7 @@
                 console.log('cate: ', cate)
                 $.ajax({
                     type: "post",
-                    url: "/api/addcate",
+                    url: "/addcate",
                     data: {
                         cate: cate
                     },
@@ -180,7 +177,7 @@
             });
         }
 
-        function deleteRole() {
+        function deleteCate() {
             $('.deleteCatebtn').click(function (e) {
                 e.preventDefault();
                 var id = $(this).attr('data-id');
@@ -197,7 +194,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "delete",
-                            url: "/api/deleteCate",
+                            url: "/deleteCate",
                             data: {
                                 id: id
                             },
@@ -232,12 +229,13 @@
             $(document).on('click', '.editCateName', function () {
                 $('#editForm').val($(this).attr('data-value'));
                 $('#editFormId').val($(this).attr('data-id'));
-                $('#editModal').modal('show');
+                // $('#editModal').modal('show');
+                console.log('aaaaa');
             });
 
             $('.modal-footer').on('click', '#confirm', function () {
                 var id = $("#editFormId").val().trim();
-                let url_ = `/api/${id}/updateCate`;
+                let url_ = `/${id}/updateCate`;
                 var newCate = $("#editForm").val().trim();
                 console.log('id: ', id)
                 console.log('newCate: ', newCate)
@@ -245,7 +243,7 @@
                     type: "post",
                     url: url_,
                     data: {
-                        newCate: newCate
+                        cate: newCate
                     },
                     dataType: "json",
                     success: function (res) {
@@ -269,14 +267,12 @@
                 });
             });
         }
-        function closeModal() {
-            $('.closemodal').click(function (e) {
-                e.preventDefault();
-                $('#addCate').val('');
-            });
-        }
+        // function closeModal() {
+        //     $('.closemodal').click(function (e) {
+        //         e.preventDefault();
+        //         $('#addCate').val('');
+        //     });
+        // }
     </script>
-
     </html>
-
 @endsection

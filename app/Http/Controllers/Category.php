@@ -45,10 +45,11 @@ class Category extends Controller
         //     'name' => $request->cate,
         //     // 'idTeacher' => $request->username,
         // ];
-
+            // dd($request->all());
         CateModel::create(['name' => $request->cate]);
         return response()->json(['check' => true]);
     }
+
 
     /**
      * Display the specified resource.
@@ -69,10 +70,10 @@ class Category extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update ($id, UpdateCateRequest $request)
+    public function update ($id, UpdateCateRequest  $request)
     {
         // dd($request->all(),$id);
-        CateModel::where('id', $id)->update(['name' => $request->newCate]);
+        CateModel::where('id', $id)->update(['name' => $request->cate]);
         return response()->json(['check' => true]);
     }
 

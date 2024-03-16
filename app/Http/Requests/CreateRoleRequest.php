@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCateRequest extends FormRequest
+class CreateRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,7 @@ class UpdateCateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cate' => 'required|string|max:255|unique:category,name,' .$this->route('id') ,
+            'role' => 'required|string|max:255|unique:role,name',
         ];
     }
-
-    // public function messages()
-    // {
-    //     return  [
-    //         'unique' => 'Tên hãng bị trùng',
-    //         'max'=>'Tên hãng quá dài',
-    //     ];
-    // }
 }

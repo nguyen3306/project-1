@@ -19,14 +19,14 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::controller(Category::class)->group(function(){
-    Route::post('/addcate','store');
-    Route::delete('/deleteCate', 'destroy');
-    Route::post('/{id}/updateCate', 'update');
+// Route::controller(Category::class)->group(function(){
+//     // Route::post('/addcate','store')->name('addcate');
+//     Route::delete('/deleteCate', 'destroy');
+//     Route::post('/{id}/updateCate', 'update');
     
-    // Route::delete('{formId}/delete', [AbcController::class, 'delete'])->name('delete');
-});
+//     // Route::delete('{formId}/delete', [AbcController::class, 'delete'])->name('delete');
+// });
 
-Route::controller(UserController::class)->group(function () {
-    Route::post('/CreateUser','store');
-});
+// Route::controller(UserController::class)->group(function () {
+//     Route::post('/CreateUser','store');
+// });
