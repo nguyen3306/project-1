@@ -247,7 +247,7 @@
                                         </li>
                                         <li><a href="/cate">Category</a>
                                         </li>
-                                        <li><a href="/schedule">Schedule</a>
+                                        <li><a href="/role">Role</a>
                                         </li>
                                         <li><a href="/process">Process</a>
                                         </li>

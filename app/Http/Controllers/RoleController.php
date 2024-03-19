@@ -22,7 +22,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -30,9 +30,10 @@ class RoleController extends Controller
      */
     public function store(CreateRoleRequest $request)
     {
-        // dd($request->role);
+        // dd($request->all());
         RoleModel::create(['name' => $request->role]);
-        return response()->json(['check' => true]);
+        // return response()->json(['check' => true]);
+        return redirect()->route('role');       
     }
 
     /**

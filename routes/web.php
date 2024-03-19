@@ -24,17 +24,20 @@ Route::controller(Category::class)->group(function(){
     Route::post('/addcate','store')->name('addcate');
     Route::delete('/deleteCate', 'destroy');
     Route::post('/{id}/updateCate', 'update');
+    Route::get('/export', 'export')->name('exportexcel');
+
     // Route::delete('{formId}/delete', [AbcController::class, 'delete'])->name('delete');
 });
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/users','index');
+    Route::get('/','index');
     Route::post('/CreateUser','store');
 });
 Route::post('/',[UserController::class,'login']);
 
 Route::controller(RoleController::class)->group(function () {
-    Route::get('/role','index');
+    Route::get('/role','index')->name('role');
+    Route::get('/createRoles','create');
     Route::post('/createRole','store');
     Route::post('/deleteRole','destroy');
 });

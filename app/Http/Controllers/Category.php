@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
 use App\Http\Requests\UpdateCateRequest;
 use App\Models\CateModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\CreateCateRequest;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Category extends Controller
 {
@@ -16,7 +18,7 @@ class Category extends Controller
     public function index()
     {
         $cate = CateModel::all();
-        return view("main.cate", compact('cate'));
+        return view("main.cate.cate", compact('cate'));
 
     }
 
@@ -54,9 +56,17 @@ class Category extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function export(Request $request)
     {
-        //
+        $user=CateModel::all();
+        if ($request->get("export_excel")&&$request->get('export_excel')==1) {
+            $valueUser=$user;
+            $timestamp = now()->format('Y_m_d_H_i_s_');
+            $name = 'User_Excel_' . $timestamp . '_' . rand() . '.xlsx';
+            ob_end_clean();
+            return Excel::download(new UsersExport, $name);
+        }
+        return view('main.cate.cate');
     }
 
     /**

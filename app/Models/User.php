@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+
 
 class User extends Authenticatable
 {
@@ -14,9 +16,10 @@ class User extends Authenticatable
 
     public function index()
     {
-        // $role = UserRoleModel::where('status', 1)->get();
-        // $user = DB::table('users')->join('role_tbl', 'users.idRole', '=', 'role_tbl.id')->select('users.*', 'role_tbl.name as rolename')->get();
-        // return view("main.user", compact("role", "user"));
+        $role = RoleModel::all();
+        $user = DB::table('users')->join('role', 'users.idRole', '=', 'role.id')->select('users.*', 'role.name as rolename')->get();
+        // dd($user);
+        return view("main.user", compact("role", "user"));
     }
     /**
      * The attributes that are mass assignable.
