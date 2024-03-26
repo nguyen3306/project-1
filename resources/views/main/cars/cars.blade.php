@@ -1,19 +1,23 @@
 @extends('layout.Navbar')
-@section('Category')
-<div class="col-3">
-    <button type="submit" class="btn btn-primary" id="addCate">Thêm</button>
-    <button id="excel" class="btn btn-primary">download</button>
-    <input type="text"name="search">
-</div>
+@section('cars')
+
+    <form action="/importcars" method="post"  enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" class="" placeholder=""/>
+        <button class="btn btn-primary mt-1" type="submit" id="submit">Import</button>
+    <button class="btn btn-primary mt-1" type="button" id="">Thêm</button>
+
+    </form>
+
 @endsection
-@section('Cate')
-    HÃNG XE CÁC LOẠI
+@section('cartitle')
+    CHI TIẾT XE 
 @endsection
 @section('main')
     {{-- Container --}}
     <div class="container">
         <div class="row">
-            @if (count($cate) > 0)
+            @if (count($cars) > 0)
                 <div class="table-responsive">
                     <table class="table table-primary">
                         <thead>
@@ -21,17 +25,15 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Tên loại</th>
                                 {{-- <th scope="col">Status</th> --}}
-                                <th scope="col">Ngày tạo</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($cate as $key => $item)
+                            @foreach ($cars as $key => $item)
                                 <tr>
                                     <td scope="row">{{ ++$key }}</td>
-                                    <td data-toggle="modal" data-target="#editModal" class="editCateName pointer"
+                                    <td  class=""
                                         data-id="{{ $item->id }}" data-value="{{ $item->name }}">
-
                                         {{ $item->name }}
                                     </td>
                                     {{-- <td>
@@ -46,10 +48,11 @@
                                         @endif
                                     </select>
                                 </td> --}}
-                                    <td>{{ $item->created_at }}</td>
                                     <td>
                                         <button class="btn btn-danger deleteCatebtn" data-id="{{ $item->id }}">Xóa
                                         </button>
+                                        <button data-toggle="modal" data-target="#editModal" class="btn btn-warning">Sửa</button>
+                                        <button data-id="{{ $item->id }}" class="btn btn-primary Detail">Chi tiết</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -68,7 +71,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Thêm hãng xe</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Update</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -121,5 +124,6 @@
 
 
     </html>
-    @include('main.cate.js')
+@include('main.cars.js')
+
 @endsection

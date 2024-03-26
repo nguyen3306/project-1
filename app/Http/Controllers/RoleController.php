@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRoleRequest;
+use App\Imports\CarsImport;
 use App\Models\RoleModel;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RoleController extends Controller
 {
@@ -33,7 +35,7 @@ class RoleController extends Controller
         // dd($request->all());
         RoleModel::create(['name' => $request->role]);
         // return response()->json(['check' => true]);
-        return redirect()->route('role');       
+        return response()->json(['check' => true]);
     }
 
     /**
@@ -55,9 +57,10 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RoleModel $roleModel)
+    public function update($id,Request $request, RoleModel $roleModel)
     {
-        //
+        RoleModel::where('id', $id)->update(['name' => $request->role]);
+        return response()->json(['check' => true]);
     }
 
     /**
@@ -65,11 +68,13 @@ class RoleController extends Controller
      */
     public function destroy(RoleModel $roleModel, Request $request)
     {
-        $Category = RoleModel::where('id', $request->id)->first();
-        if (empty($Category)) {
-            return response()->json(['check' => false]);
-        }
         RoleModel::where('id', $request->id)->delete();
         return response()->json(['check' => true]);
     }
+
+
+
+
+
+    
 }

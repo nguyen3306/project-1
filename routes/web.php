@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\Category;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\Checklogin;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +20,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('main.home');
-// });
+Route::get('/', function () {
+    return view('main.login');
+});
+Route::post('/login',[UserController::class,'login']);
+
+Route::middleware(Checklogin::class)->group(function () {
+
 Route::controller(Category::class)->group(function(){
     Route::get('/cate','index');
     Route::post('/addcate','store')->name('addcate');
@@ -30,16 +38,31 @@ Route::controller(Category::class)->group(function(){
 });
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/','index');
+    Route::get('/users','index');
     Route::post('/CreateUser','store');
+    Route::post('/DeleteUser','destroy');
+    // Route::post('/{id}/updateUser','update');
+    Route::post('/detailUser','edit');
+    Route::post('/detailUser1','update');
 });
-Route::post('/',[UserController::class,'login']);
 
 Route::controller(RoleController::class)->group(function () {
     Route::get('/role','index')->name('role');
-    Route::get('/createRoles','create');
+    // Route::get('/createRoles','create');
     Route::post('/createRole','store');
     Route::post('/deleteRole','destroy');
+    Route::post('/{id}/updateRole','update');
+
+});
+
+Route::controller(CarController::class)->group(function () {
+    Route::get('/cars','index')->name('cars');
+    // Route::get('/createRoles','create');
+    // Route::post('/createRole','store');
+    // Route::post('/deleteRole','destroy');
+    Route::post('/importcars','import');
 });
 // Route::get('users/index/abc', [ABCController::class, 'index'])->name('users.abc');
 // {{route("users.abc")}};
+
+});

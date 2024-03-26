@@ -6,7 +6,6 @@
 @endsection
 <!-- Button trigger modal -->
 @section('main')
-<a href='/createRoles'>createRoles</a>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -16,12 +15,32 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" class="form-control" id="addRole" name="addRole"
-                        placeholder="Nhập loại tài khoản">
+                    <input type="text" class="form-control" value="" id="addRole" name="addRole" placeholder="Nhập loại tài khoản">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                     <button type="button" class="btn btn-primary" id="addRolebtn">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div class="modal fade" id="modalEditRole" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa loại tài khoản</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" value="" id="editRole" name="editRole" placeholder="Nhập loại tài khoản">
+                    <input type="text"value="" id="editRoleId">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary" id="confirm">Lưu</button>
                 </div>
             </div>
         </div>
@@ -42,10 +61,9 @@
                         </thead>
                         <tbody>
                             @foreach ($role as $key => $item)
-                                <tr data-toggle="modal" data-target="#editModal" class="Rolename"
-                                    data-id="{{ $item->id }}" data-value="{{ $item->name }}">
+                                <tr class="Rolename">
                                     <td scope="row">{{ ++$key }}</td>
-                                    <td>
+                                    <td class="roleName" data-id="{{ $item->id }}" data-value="{{ $item->name }}">
                                         {{ $item->name }}
                                     </td>
                                     {{-- <td>
@@ -64,7 +82,7 @@
                                     <td>
                                         <button class="btn btn-danger deleteRolebtn"
                                             data-id="{{ $item->id }}">Xóa</button>
-                                        <button class="btn btn-warning editRolebtn"
+                                        <button data-toggle="modal" data-target="#modalEditRole" class="btn btn-warning editRolebtn"
                                             data-id="{{ $item->id }}">Sửa</button>
                                     </td>
                                 </tr>

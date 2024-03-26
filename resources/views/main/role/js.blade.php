@@ -3,6 +3,7 @@
         addRole();
         deleteRole();
         editRole();
+
     });
 
 
@@ -38,11 +39,10 @@
         $('.deleteRolebtn').click(function(e) {
             e.preventDefault();
             id = $(this).attr('data-id');
-            console.log(id);
             Swal.fire({
                 title: "Xóa loại tài khoản?",
                 showDenyButton: true,
-                showCancelButton: true,
+                showCancelButton: false,
                 confirmButtonText: "Đúng",
                 denyButtonText: `không`
             }).then((result) => {
@@ -60,8 +60,8 @@
 
                         }
                     }).then(() => {
-                            window.location.reload()
-                        })
+                        window.location.reload()
+                    })
                 } else if (result.isDenied) {
                     Swal.fire("Đã hủy", "", "info");
                 }
@@ -69,12 +69,41 @@
         });
 
     }
-    
+
 
     function editRole() {
-        $('.editRolebtn').click(function (e) { 
+        $('.roleName').click(function(e) {
             e.preventDefault();
-            
+            $('#editRole').val($(this).attr('data-value'));
+            $('#editRoleId').val($(this).attr('data-id'));
+            role = $('#editRoleId').val().trim();
+            role2 = $('#editRole').val().trim();
+
+
+            console.log(role);
+            $('#modalEditRole').modal('show');
+
+            $('#confirm').click(function(e) {
+                e.preventDefault();
+                var newRole = $('#editRole').val().trim();
+                var id = $('#editRoleId').val().trim();
+                url = `/${id}/updateRole`;
+
+                $.ajax({
+                    type: "post",
+                    url: url,
+                    data: {
+                        role:newRole
+                    },
+                    dataType: "json",
+                    success: function (res) {
+                        alert('success');
+                    }
+                });
+
+            });
+
+
         });
     }
 </script>

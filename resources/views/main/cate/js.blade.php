@@ -4,7 +4,7 @@
         addCate();
         deleteCate();
         UpdateCate();
-        excel();
+        // excel();
         // closeModal();
     });
 
@@ -117,8 +117,6 @@
             var id = $("#editFormId").val().trim();
             let url_ = `/${id}/updateCate`;
             var newCate = $("#editForm").val().trim();
-            console.log('id: ', id)
-            console.log('newCate: ', newCate)
             $.ajax({
                 type: "post",
                 url: url_,
@@ -134,7 +132,7 @@
                             icon: "success"
                         })
                             .then(() => {
-                                window.location.reload()
+                                // window.location.reload()
                             });
                     } else {
                         Swal.fire({
@@ -154,16 +152,5 @@
     //     });
     // }
 
-    let defaultUrlObject = `{{route('exportexcel')}}`
-    function excel() {
-        $('#excel').click(function (e) { 
-            e.preventDefault();
-            const searchInput = $("input[name=search]").val();
-            let urlObject = new URL(defaultUrlObject);
-            // console.log(defaultUrlObject,searchInput);
-            urlObject.searchParams.append('search', searchInput);
-            urlObject.searchParams.append('export_excel', 1);
-                window.open(urlObject.href, '_blank').focus();
-        });
-    }
+    
 </script>

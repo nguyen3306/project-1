@@ -21,12 +21,12 @@ return new class extends Migration
             $table->dateTime('end_date');
             $table->integer('extra_hours');
             $table->bigInteger('total');
-            $table->unsignedBigInteger('voucher_id');
+            $table->unsignedBigInteger('voucher_id')->nullable();
             $table->foreign('voucher_id')->references('id')->on('voucher')->onDelete('cascade');
-            $table->bigInteger('voucher_value');
+            $table->bigInteger('voucher_value')->nullable();
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->bigInteger('code');
+            $table->bigInteger('code')->nullable();
             $table->timestamps();
         });
     }

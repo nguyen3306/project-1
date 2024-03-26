@@ -22,8 +22,8 @@ class CreateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:users,name',
-            'email' => 'required|string|max:255|unique:users,email',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|string|max:255|unique:users,email',
             'password' => 'required|string|max:255'
         ];
 
@@ -34,12 +34,7 @@ class CreateUserRequest extends FormRequest
     {
         return [
 
-            'name.required' => 'Thiếu tên người dùng',
-            'email.required' => 'Chưa nhập email người dùng',
-            'password.required' => 'Chưa nhập mật khẩu',
-            'name.max' => 'Tên quá dài',
-            'email.max' => 'Email quá quá dài',
-            'email.unique' => 'Email đã tồn tại'
+           
         ];
     }
 }

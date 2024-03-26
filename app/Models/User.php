@@ -24,6 +24,7 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
+     * 
      * @var array<int, string>
      */
     protected $table = 'users';
@@ -32,6 +33,10 @@ class User extends Authenticatable
         'role_id',
         'email',
         'password',
+        'phone',
+        'address',
+        'SL_ma_duoc_GT',
+        'ma_GT',
     ];
 
     /**
