@@ -29,7 +29,7 @@
                                         <span class="editCateName pointer" data-id="{{ $item->id }}"
                                             value-data="{{ $item->name }}">{{ $item->name }}</span>
                                     </td>
-                                    {{-- <td>
+                                    <!-- {{-- <td>
                                         <select name="" id="" class="form-control switchRole pointer"
                                             data-id="{{ $item->id }}">
                                             @if ($item->status == 0)
@@ -40,7 +40,7 @@
                                                 <option value="1" selected>Đang mở</option>
                                             @endif
                                         </select>
-                                    </td> --}}
+                                    </td> --}} -->
                                     <td>{{ $item->created_at }}</td>
                                     <td>
                                         <button class="btn btn-danger deleteCatebtn"
