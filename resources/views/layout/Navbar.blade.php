@@ -36,7 +36,7 @@
     <div class="be-wrapper be-fixed-sidebar">
         <nav class="navbar navbar-expand fixed-top be-top-header">
             <div class="container-fluid">
-                <div class="be-navbar-header"><a class="navbar-brand" href="index.html"></a>
+                <div class="be-navbar-header"><a class="navbar-brand" href="/"></a>
                 </div>
 
                 <div class="page-title"><span>

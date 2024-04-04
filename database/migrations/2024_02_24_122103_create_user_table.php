@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('password');
             $table->char('email');
             $table->string('ma_GT')->nullable();
-            $table->bigInteger('SL_ma_duoc_GT');
+            $table->bigInteger('SL_ma_duoc_GT')->nullable();
+            $table->rememberToken();
             $table->timestamps();
 
         });
