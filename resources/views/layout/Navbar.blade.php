@@ -44,7 +44,7 @@
 
                         @yield('Users')
 
-
+                        @yield('cartitle')
 
                     </span></div>
 
@@ -52,11 +52,11 @@
             
                 @yield('Category')
 
-
                 @yield('user')
 
+                @yield('cars')
                 
-
+                
                 {{-- @yield('schedule') --}}
 
                 {{-- @yield('process') --}}
@@ -247,11 +247,11 @@
                                         </li>
                                         <li><a href="/cate">Category</a>
                                         </li>
-                                        <li><a href="/schedule">Schedule</a>
+                                        <li><a href="/role">Role</a>
                                         </li>
-                                        <li><a href="/process">Process</a>
+                                        <li><a href="/cars">Cars</a>
                                         </li>
-                                        <li><a href="/education">Education</a>
+                                        <li><a href="/carsImage">Car's Image</a>
                                         </li>
                                         <li><a href="/CourseCate">CourseCate</a>
                                         </li>

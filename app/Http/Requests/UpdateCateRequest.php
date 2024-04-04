@@ -22,17 +22,15 @@ class UpdateCateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'newCate' => 'required|string|max:255|unique:category,name',
+            'cate' => 'required|string|max:255|unique:category,name,' .$this->route('id') ,
         ];
     }
 
-    public function messages()
-    {
-        return  [
-            'unique' => 'Tên hãng bị trùng',
-            'max'=>'Tên hãng quá dài',
-            'required' => 'Thiếu mã hãng',
-            'exists' => 'Mã hàng không tồn tại'
-        ];
-    }
+    // public function messages()
+    // {
+    //     return  [
+    //         'unique' => 'Tên hãng bị trùng',
+    //         'max'=>'Tên hãng quá dài',
+    //     ];
+    // }
 }

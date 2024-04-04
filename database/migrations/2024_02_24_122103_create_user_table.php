@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('role')->onDelete('cascade');
-            $table->integer('phone');
-            $table->string('address');
+            $table->integer('phone')->nullable();
+            $table->string('address')->nullable();
             $table->string('password');
             $table->char('email');
-            $table->string('ma_GT');
+            $table->string('ma_GT')->nullable();
             $table->bigInteger('SL_ma_duoc_GT');
             $table->timestamps();
 
