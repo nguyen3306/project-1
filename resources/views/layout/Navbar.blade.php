@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="assets\img\logo-fav.png">
+    <link rel="shortcut icon" href="{{ asset('assets\img\logo-fav.png') }}">
     <title>Beagle</title>
-    <link rel="stylesheet" type="text/css" href="assets\lib\perfect-scrollbar\css\perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets\lib\perfect-scrollbar\css\perfect-scrollbar.css') }}">
     <link rel="stylesheet" type="text/css"
-        href="assets\lib\material-design-icons\css\material-design-iconic-font.min.css">
-    <link rel="stylesheet" type="text/css" href="assets\lib\jquery.vectormap\jquery-jvectormap-1.2.2.css">
-    <link rel="stylesheet" type="text/css" href="assets\lib\jqvmap\jqvmap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets\lib\datetimepicker\css\bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="assets\css\app.css" type="text/css">
+        href="{{ asset('assets\lib\material-design-icons\css\material-design-iconic-font.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets\lib\jquery.vectormap\jquery-jvectormap-1.2.2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets\lib\jqvmap\jqvmap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets\lib\datetimepicker\css\bootstrap-datetimepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets\css\app.css') }}" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -69,7 +69,7 @@
                     <ul class="nav navbar-nav float-right be-user-nav">
                         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
                                 data-toggle="dropdown" role="button" aria-expanded="false"><img
-                                    src="assets\img\avatar.png" alt="Avatar"><span class="user-name">Túpac
+                                    src="{{ asset('assets\img\avatar.png') }}" alt="Avatar"><span class="user-name">Túpac
                                     Amaru</span></a>
                             <div class="dropdown-menu" role="menu">
                                 <div class="user-info">
@@ -118,7 +118,7 @@
                                             <div class="content">
                                                 <ul>
                                                     <li class="notification notification-unread"><a href="#">
-                                                            <div class="image"><img src="assets\img\avatar2.png"
+                                                            <div class="image"><img src="{{ asset('assets\img\avatar2.png') }}"
                                                                     alt="Avatar"></div>
                                                             <div class="notification-info">
                                                                 <div class="text"><span class="user-name">Jessica
@@ -887,22 +887,22 @@
                     </div>
                 </nav>
             </div>
-            <script src="assets\lib\jquery\jquery.min.js" type="text/javascript"></script>
-            <script src="assets\lib\perfect-scrollbar\js\perfect-scrollbar.min.js" type="text/javascript"></script>
-            <script src="assets\lib\bootstrap\dist\js\bootstrap.bundle.min.js" type="text/javascript"></script>
-            <script src="assets\js\app.js" type="text/javascript"></script>
-            <script src="assets\lib\jquery-flot\jquery.flot.js" type="text/javascript"></script>
-            <script src="assets\lib\jquery-flot\jquery.flot.pie.js" type="text/javascript"></script>
-            <script src="assets\lib\jquery-flot\jquery.flot.time.js" type="text/javascript"></script>
-            <script src="assets\lib\jquery-flot\jquery.flot.resize.js" type="text/javascript"></script>
-            <script src="assets\lib\jquery-flot\plugins\jquery.flot.orderBars.js" type="text/javascript"></script>
-            <script src="assets\lib\jquery-flot\plugins\curvedLines.js" type="text/javascript"></script>
-            <script src="assets\lib\jquery-flot\plugins\jquery.flot.tooltip.js" type="text/javascript"></script>
-            <script src="assets\lib\jquery.sparkline\jquery.sparkline.min.js" type="text/javascript"></script>
-            <script src="assets\lib\countup\countUp.min.js" type="text/javascript"></script>
-            <script src="assets\lib\jquery-ui\jquery-ui.min.js" type="text/javascript"></script>
-            <script src="assets\lib\jqvmap\jquery.vmap.min.js" type="text/javascript"></script>
-            <script src="assets\lib\jqvmap\maps\jquery.vmap.world.js" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jquery\jquery.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\perfect-scrollbar\js\perfect-scrollbar.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\bootstrap\dist\js\bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\js\app.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jquery-flot\jquery.flot.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jquery-flot\jquery.flot.pie.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jquery-flot\jquery.flot.time.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jquery-flot\jquery.flot.resize.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jquery-flot\plugins\jquery.flot.orderBars.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jquery-flot\plugins\curvedLines.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jquery-flot\plugins\jquery.flot.tooltip.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jquery.sparkline\jquery.sparkline.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\countup\countUp.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jquery-ui\jquery-ui.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jqvmap\jquery.vmap.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('assets\lib\jqvmap\maps\jquery.vmap.world.js') }}" type="text/javascript"></script>
             <script type="text/javascript">
                 $(document).ready(function() {
                     //-initialize the javascript

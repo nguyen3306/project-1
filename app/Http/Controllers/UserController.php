@@ -90,10 +90,12 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request)
+    public function edit($id,Request $request)
     {
-        $user1 = User::where('id', $request->id)->first();
-        return response()->json($user1);
+        // dd($id);
+        $role = RoleModel::all();
+        $user = User::where('id', $id)->first();
+        return view('main.users.update', compact('user','role'),);
     }
 
     /**

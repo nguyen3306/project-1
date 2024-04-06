@@ -31,22 +31,32 @@
                                 <tr class="">
                                     <td scope="row">{{ ++$key }}</td>
                                     <td>
-                                        <span data-value="{{ $item->name }}" class="editUserName pointer"data-id="{{ $item->id }}"
-                                            >{{ $item->name }}</span>
+                                        <span data-value="{{ $item->name }}"
+                                            class="editUserName pointer"data-id="{{ $item->id }}">{{ $item->name }}</span>
                                     </td>
                                     <td scope="">{{ $item->email }}</td>
-                                    <td >{{ $item->rolename }}</td>
+                                    <td>{{ $item->rolename }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>{{ $item->ma_GT }}</td>
                                     <td>{{ $item->created_at }}</td>
                                     <td>
                                         <button class="btn btn-danger deleteUserbtn"
-                                        data-id="{{ $item->id }}">Xóa</button>
-                                        <a href=""><button class="btn btn-warning updateUserbtn"
-                                        data-id="{{ $item->id }}">Sửa</button> 
-                                        </td>
-                                            </a>
+                                            data-id="{{ $item->id }}">Xóa</button>
+                                        {{-- <a href="/detailUser/{{$item->id}}"><button class="btn btn-warning updateUserbtn"
+                                        data-id="{{ $item->id }}">Sửa</button> </a> --}}
+
+
+                                        <a class="btn btn-warning " href="{{route("abc",$item->id)}}">Edit</a>
+
+                                    </td>
+
+
+
+
+
+
+
                                 </tr>
                             @endforeach
                         </tbody>
@@ -106,5 +116,5 @@
     </div>
 
 
-@include('main.users.js')
+    @include('main.users.js')
 @endsection

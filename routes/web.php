@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 Route::post('/login',[UserController::class,'login']);
 
-Route::middleware(Checklogin::class)->group(function () {
+// Route::middleware(Checklogin::class)->group(function () {
 
 Route::controller(Category::class)->group(function(){
     Route::get('/cate','index');
@@ -41,8 +41,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/users','index');
     Route::post('/CreateUser','store');
     Route::post('/DeleteUser','destroy');
-    // Route::post('/{id}/updateUser','update');
-    Route::post('/detailUser','edit');
+    Route::get('/{id}/abc','edit')->name( 'abc' );
     Route::post('/detailUser1','update');
 });
 
@@ -65,4 +64,4 @@ Route::controller(CarController::class)->group(function () {
 // Route::get('users/index/abc', [ABCController::class, 'index'])->name('users.abc');
 // {{route("users.abc")}};
 
-});
+// });
