@@ -5,7 +5,7 @@
         @csrf
         <input type="file" name="file" class="" placeholder=""/>
         <button class="btn btn-primary mt-1" type="submit" id="submit">Import</button>
-    <button class="btn btn-primary mt-1" type="button" id="">Thêm</button>
+    <button class="btn btn-primary mt-1" type="button" id="" data-bs-toggle="modal" data-bs-target="#ModalCar">Thêm</button>
 
     </form>
 
@@ -66,19 +66,25 @@
 
     <!-- Modal -->
 
-    <div class="modal fade" id="Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="ModalCar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Update</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">
+                        Thêm thông tin xe
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="mb-3 mt-3">
-                            <input type="text" class="form-control addCate" id="addCate" name="addCate"
-                                placeholder="Nhập thông tin">
+                            nhập tên
+                            <input type="text" class="form-control" id="" placeholder="Nhập thông tin">
+                            tên
+                            <input type="text" class="form-control" id="" placeholder="Nhập thông tin">
+                            <input type="text" class="form-control" id="" placeholder="Nhập thông tin">
+                            <input type="text" class="form-control" id="" placeholder="Nhập thông tin">
                         </div>
                     </form>
                 </div>
