@@ -47,7 +47,7 @@
                                         data-id="{{ $item->id }}">Sửa</button> </a> --}}
 
 
-                                        <a class="btn btn-warning " href="{{route("abc",$item->id)}}">Edit</a>
+                                        <a class="btn btn-warning " href="{{route("EditUser",$item->id)}}">Sửa</a>
 
                                     </td>
 

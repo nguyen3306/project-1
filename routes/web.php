@@ -41,7 +41,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/users','index');
     Route::post('/CreateUser','store');
     Route::post('/DeleteUser','destroy');
-    Route::get('/{id}/abc','edit')->name( 'abc' );
+    Route::get('/{id}/editUser','edit')->name( 'EditUser' );
     Route::post('/detailUser1','update');
 });
 
