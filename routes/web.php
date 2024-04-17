@@ -42,7 +42,7 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/CreateUser','store');
     Route::post('/DeleteUser','destroy');
     Route::get('/{id}/editUser','edit')->name( 'EditUser' );
-    Route::post('/detailUser1','update');
+    Route::post('/UpdateUser','update')->name('UpdateUser');
 });
 
 Route::controller(RoleController::class)->group(function () {

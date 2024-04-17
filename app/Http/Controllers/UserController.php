@@ -101,11 +101,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    private function update(Request $request)
+    public function update($id,Request $request)
     {
-        $user1 = User::where('id', $request->id)->first();
+        $user1 = User::where('id', $id)->first();
         dd($user1);
-        return response()->json(['check' => true]);
+        return view('main.users.users')->compact('user1');
+        
 
 
     }

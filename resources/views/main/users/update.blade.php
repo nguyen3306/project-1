@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div>
-                <form action="/UpdateUser" method="post">
+                <form action="{{ route('UpdateUser') }}" method="POST" value="{{ csrf_token() }}">
                     @csrf
                     <div class="mb-3 mt-3">
                         Tên
@@ -45,6 +45,9 @@
         </div>
     </div>
 
+    <script>
+        
+    </script>
 
 
     @include('main.users.js')
