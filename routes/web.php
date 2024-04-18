@@ -57,7 +57,7 @@ Route::controller(RoleController::class)->group(function () {
 Route::controller(CarController::class)->group(function () {
     Route::get('/cars','index')->name('cars');
     // Route::get('/createRoles','create');
-    // Route::post('/createRole','store');
+    Route::post('/createCar','store');
     // Route::post('/deleteRole','destroy');
     Route::post('/importcars','import');
 });

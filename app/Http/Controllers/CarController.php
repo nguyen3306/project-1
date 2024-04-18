@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCarRequest;
 use App\Imports\CarsImport;
 use App\Models\CarsModel;
+use App\Models\CateModel;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
+use Validator;
+
 
 class CarController extends Controller
 {
@@ -14,8 +19,12 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = CarsModel::all();
-        return view('main.cars.cars', compact('cars'));
+        // $cate = CarsModel::all();
+        $cate = CateModel::all();
+        $cars = DB::table('cars')->join('category', 'cars.cate_id', '=', 'category.id')->select('cars.*', 'category.name as catename')->get();
+        // dd($cars);
+
+        return view('main.cars.cars', compact('cars','cate'));
     }
 
     /**
@@ -31,7 +40,40 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required|max:255|string',
+            'brand'=> 'required|max:255|string',
+            'seat'=> 'required|max:30|min:4|string',
+            'date'=> 'string|min:2015|max:2024|reqired',
+            'image'=> 'nullable|mimes:png,jpg,jpeg',
+            'descrription'=> 'required|string|unique:cars,description',
+            'price'=> 'required|numeric',
+            'category'=> 'required',
+        ]);
+
+
+        if($request->has('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            $path = 'upload/img/';
+            $file->move($path, $fileName);
+        }
+
+
+        CarsModel::create([
+            'name'=>$request->name,
+            'brand'=>$request->brand,
+            'seat'=>$request->seat,
+            'date'=>$request->date,
+            'img'=> $path.$fileName,
+            'cate_id'=>$request->category,
+            'description'=>$request->description,
+            'price'=>$request->price,
+
+        ]);
+
+        return redirect('/cars')->with('success','success');
     }
 
     /**
@@ -70,7 +112,7 @@ class CarController extends Controller
     public function test()
     {
         // $role = RoleModel::all();
-        return view('main.cars.cars');
+        // return view('main.cars.cars');
     }
 
     /**

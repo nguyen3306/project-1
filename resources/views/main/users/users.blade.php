@@ -50,13 +50,6 @@
                                         <a class="btn btn-warning " href="{{route("EditUser",$item->id)}}">Sửa</a>
 
                                     </td>
-
-
-
-
-
-
-
                                 </tr>
                             @endforeach
                         </tbody>

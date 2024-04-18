@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $role = RoleModel::all();
         $user = DB::table('users')->join('role', 'users.role_id', '=', 'role.id')->select('users.*', 'role.name as rolename')->get();
-        // dd($users);
+        // dd($user);
 
         return view("main.users.users", compact('role','user'));
 
