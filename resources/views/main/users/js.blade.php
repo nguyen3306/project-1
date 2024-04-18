@@ -118,27 +118,6 @@
     }
 
 
-    function updateUser() {
-        $('.updateUserbtn').click(function(e) {
-            e.preventDefault();
-            $('.updateUserbtn').val($(this).attr('data-id'));
-            $('.editUserName').val($(this).attr('data-id'));
-            var id = $(".updateUserbtn").val().trim();
-            console.log(id);
-            $.ajax({
-                type: "post",
-                url: "/detailUser",
-                data: {
-                    id: id
-                },
-                dataType: "json",
-                success: function(res) {
-                    alert(res.name);
-
-                }
-            });
-
-        });
-    }
+    
 
 </script>
