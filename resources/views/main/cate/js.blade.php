@@ -132,7 +132,7 @@
                             icon: "success"
                         })
                             .then(() => {
-                                // window.location.reload()
+                                window.location.reload()
                             });
                     } else {
                         Swal.fire({

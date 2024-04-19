@@ -50,10 +50,9 @@
                                     <td>
                                         <button class="btn btn-danger deleteCatebtn" data-id="{{ $item->id }}">Xóa
                                         </button>
-                                        <button data-toggle="modal" data-target="#editModal"
-                                            class="btn btn-warning">Sửa</button>
-                                        <button data-id="{{ $item->id }}" class="btn btn-primary Detail">Chi
-                                            tiết</button>
+                                        <a class="btn btn-warning " href="{{route("EditCar",$item->id)}}">Sửa</a>
+
+                                        
                                     </td>
                                 </tr>
                             @endforeach

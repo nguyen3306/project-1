@@ -45,6 +45,8 @@
                         @yield('Users')
 
                         @yield('cartitle')
+                        
+                        @yield('Car')
 
                     </span></div>
 

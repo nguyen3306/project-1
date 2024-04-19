@@ -60,6 +60,9 @@ Route::controller(CarController::class)->group(function () {
     Route::post('/createCar','store');
     // Route::post('/deleteRole','destroy');
     Route::post('/importcars','import');
+    Route::get('/{id}/editCar','edit')->name( 'EditCar' );
+    Route::post('/UpdateCar','update')->name( 'UpdateCar' );
+
 });
 // Route::get('users/index/abc', [ABCController::class, 'index'])->name('users.abc');
 // {{route("users.abc")}};

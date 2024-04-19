@@ -97,7 +97,13 @@
                     },
                     dataType: "json",
                     success: function (res) {
-                        alert('success');
+                        Swal.fire({
+                        title: "cập nhật thành công",
+                        text: "",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.reload();
+                    });
                     }
                 });
 

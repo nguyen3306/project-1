@@ -10,10 +10,10 @@
     <div class="container">
         <div class="row">
             <div>
-                <form action="{{ route('UpdateUser') }}" method="POST" value="{{ csrf_token() }}">
+                <form action="{{ route('UpdateUser') }}" method="POST" >
                     @csrf
                     <div class="mb-3 mt-3">
-                        <input type="text" name="name" class="form-control" id="UserName"
+                        <input type="text" name="id" class="form-control" id="UserId"
                             value="{{ old('name', $user->id) }}" hidden>
                         Tên
                         <input type="text" name="name" class="form-control" id="UserName"
@@ -22,7 +22,7 @@
                         <input type="text" name="email" class="form-control" id="UserEmail"
                         value="{{ old('email', $user->email) }}">
                         Loại tài khản
-                        <select name="role" class="form-control mb-2" name="Roleid" id="Roleid">
+                        <select name="role" class="form-control mb-2"  id="Roleid">
                             @foreach ($role as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach

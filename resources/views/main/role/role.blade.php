@@ -36,7 +36,7 @@
                 </div>
                 <div class="modal-body">
                     <input type="text" class="form-control" value="" id="editRole" name="editRole" placeholder="Nhập loại tài khoản">
-                    <input type="text"value="" id="editRoleId">
+                    <input type="text"value="" id="editRoleId" hidden>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>

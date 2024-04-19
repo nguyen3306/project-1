@@ -95,18 +95,26 @@ class UserController extends Controller
         // dd($id);
         $role = RoleModel::all();
         $user = User::where('id', $id)->first();
+        // dd($user);
         return view('main.users.update', compact('user','role'),);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update($id,Request $request)
+    public function update(Request $request)
     {
-        $user1 = User::where('id', $id)->first();
-        dd($user1);
-        return view('main.users.users')->compact('user1');
-        
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'role_id' => $request->role,
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ];
+        // dd($data);
+
+        $user = User::where('id',$request->id)->update($data);
+        return redirect('/users');
 
 
     }

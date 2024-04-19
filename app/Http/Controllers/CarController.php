@@ -58,20 +58,32 @@ class CarController extends Controller
             $fileName = time().'.'.$extension;
             $path = 'upload/img/';
             $file->move($path, $fileName);
+
+
+            CarsModel::create([
+                'name'=>$request->name,
+                'brand'=>$request->brand,
+                'seat'=>$request->seat,
+                'date'=>$request->date,
+                'img'=> $path.$fileName,
+                'cate_id'=>$request->category,
+                'description'=>$request->description,
+                'price'=>$request->price,
+    
+            ]);
         }
-
-
         CarsModel::create([
             'name'=>$request->name,
             'brand'=>$request->brand,
             'seat'=>$request->seat,
             'date'=>$request->date,
-            'img'=> $path.$fileName,
             'cate_id'=>$request->category,
             'description'=>$request->description,
             'price'=>$request->price,
 
         ]);
+
+        
 
         return redirect('/cars')->with('success','success');
     }
@@ -87,9 +99,11 @@ class CarController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CarsModel $carsModel)
+    public function edit($id, Request $request)
     {
-        //
+        $car = CarsModel::where('id', $id)->first();
+        // dd($user);
+        return view('main.cars.update', compact('car'),);
     }
 
     /**
