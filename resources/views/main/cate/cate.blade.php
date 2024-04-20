@@ -83,7 +83,6 @@
                     <button type="button" class="closemodal btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                     <button type="submit" class="btn btn-primary" id="submitbtn">Thêm</button>
                 </form>
-
                 </div>
             </div>
         </div>
