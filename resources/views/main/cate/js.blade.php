@@ -1,11 +1,9 @@
-
 <script>
-    $(document).ready(function () {
-        addCate();
+    $(document).ready(function() {
+        // addCate();
         deleteCate();
         UpdateCate();
-        // excel();
-        // closeModal();
+        
     });
 
     const Toast = Swal.mixin({
@@ -20,12 +18,17 @@
         }
     });
 
+   
+
+
+
+
     function addCate() {
-        $('#addCate').click(function (e) {
+        $('#addCate').click(function(e) {
             e.preventDefault();
             $('#Modal').modal('show');
         });
-        $('#submitbtn').on('click', function (e) {
+        $('#submitbtn').on('click', function(e) {
             e.preventDefault();
             var cate = $('.addCate').val().trim();
             console.log('cate: ', cate)
@@ -36,19 +39,19 @@
                     cate: cate
                 },
                 dataType: "json",
-                success: function (res) {
+                success: function(res) {
                     console.log(res);
                     if (res.check == true) {
                         Toast.fire({
-                            icon: "success",
-                            title: "thêm loại xe thành công"
-                        })
+                                icon: "success",
+                                title: "thêm loại xe thành công"
+                            })
                             .then(() => {
                                 window.location.reload();
                             })
                     }
                 },
-                error: function (data) {
+                error: function(data) {
                     Toast.fire({
                         icon: "error",
                         title: data.responseJSON.message
@@ -59,7 +62,7 @@
     }
 
     function deleteCate() {
-        $('.deleteCatebtn').click(function (e) {
+        $('.deleteCatebtn').click(function(e) {
             e.preventDefault();
             var id = $(this).attr('data-id');
             Swal.fire({
@@ -80,7 +83,7 @@
                             id: id
                         },
                         dataType: "JSON",
-                        success: function (res) {
+                        success: function(res) {
                             if (res.check == true) {
                                 Swal.fire({
                                     title: "Đã xóa thành công",
@@ -92,7 +95,7 @@
                             }
 
                         },
-                        error: function (data) {
+                        error: function(data) {
                             Toast.fire({
                                 icon: "error",
                                 title: data.responseJSON.message
@@ -107,13 +110,13 @@
     }
 
     function UpdateCate() {
-        $(document).on('click', '.editCateName', function () {
+        $(document).on('click', '.editCateName', function() {
             $('#editForm').val($(this).attr('data-value'));
             $('#editFormId').val($(this).attr('data-id'));
             // $('#editModal').modal('show');
         });
 
-        $('.modal-footer').on('click', '#confirm', function () {
+        $('.modal-footer').on('click', '#confirm', function() {
             var id = $("#editFormId").val().trim();
             let url_ = `/${id}/updateCate`;
             var newCate = $("#editForm").val().trim();
@@ -124,13 +127,13 @@
                     cate: newCate
                 },
                 dataType: "json",
-                success: function (res) {
+                success: function(res) {
                     if (res.check == true) {
                         Swal.fire({
-                            title: "Chỉnh sửa thành công",
-                            text: "",
-                            icon: "success"
-                        })
+                                title: "Chỉnh sửa thành công",
+                                text: "",
+                                icon: "success"
+                            })
                             .then(() => {
                                 window.location.reload()
                             });
@@ -151,6 +154,4 @@
     //         $('#addCate').val('');
     //     });
     // }
-
-    
 </script>

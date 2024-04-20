@@ -48,7 +48,7 @@
                                     <td scope="row">{{ $item->price }}</td>
                                     <td scope="row">{{ $item->catename }}</td>
                                     <td>
-                                        <button class="btn btn-danger deleteCatebtn" data-id="{{ $item->id }}">Xóa
+                                        <button class="btn btn-danger deleteCarbtn" data-id="{{ $item->id }}">Xóa
                                         </button>
                                         <a class="btn btn-warning " href="{{route("EditCar",$item->id)}}">Sửa</a>
 

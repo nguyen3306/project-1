@@ -31,7 +31,6 @@ class CreateCateRequest extends FormRequest
     public function messages()
     {
         return [
-
             'cate.required' => 'Thiếu tên hãng xe',
             'max' => 'Tên hãng quá dài',
             'unique' => 'Tên hãng xe bị trùng'

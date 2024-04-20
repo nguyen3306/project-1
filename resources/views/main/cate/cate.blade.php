@@ -1,7 +1,7 @@
 @extends('layout.Navbar')
 @section('Category')
 <div class="col-3">
-    <button type="submit" class="btn btn-primary" id="addCate">Thêm</button>
+    <button type="submit" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#addCateModal">Thêm</button>
     <button id="excel" class="btn btn-primary">download</button>
     <input type="text"name="search">
 </div>
@@ -63,7 +63,7 @@
 
     <!-- Modal -->
 
-    <div class="modal fade" id="Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="addCateModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -72,16 +72,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="/addcate" method="POST">
+                        @csrf
                         <div class="mb-3 mt-3">
                             <input type="text" class="form-control addCate" id="addCate" name="addCate"
-                                placeholder="Nhập thông tin">
+                                placeholder="Nhập thông tin" required>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="closemodal btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="submitbtn">Thêm</button>
+                    <button type="submit" class="btn btn-primary" id="submitbtn">Thêm</button>
+                </form>
+
                 </div>
             </div>
         </div>

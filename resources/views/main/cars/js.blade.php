@@ -17,18 +17,65 @@
 
     $(document).ready(function() {
         excel();
-        detail();
+        deleteCar();
+        const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
     });
 
 
-    function detail() {
-        $('.Detail').click(function(e) {
-            $('#editFormId').val($(this).attr('data-id'));
+    function deleteCar() {
+        $('.deleteCarbtn').click(function(e) {
             e.preventDefault();
-            var id = $("#editFormId").val().trim();
-            let url = `/${id}/Detail`;
-            console.log(url);
-            window.location.href(`/${id}/updateUser`);
+            id = $(this).attr('data-id');
+            console.log(id);
+            Swal.fire({
+                title: "Xóa xe ?",
+                text: "Hành động này không thể hoàn tác",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                cancelButtonText: 'Không',
+                confirmButtonText: "Xóa!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "post",
+                        url: "/DeleteCar",
+                        data: {
+                            id: id
+                        },
+                        dataType: "JSON",
+                        success: function(res) {
+                            if (res.check == true) {
+                                Swal.fire({
+                                    title: "Đã xóa thành công",
+                                    text: "",
+                                    icon: "success"
+                                }).then(() => {
+                                    window.location.reload()
+                                });
+                            }
+                        },
+                        error: function(data) {
+                            Toast.fire({
+                                icon: "error",
+                                title: data.responseJSON.message
+                            });
+                        }
+                    });
+
+                }
+            });
         });
     }
 </script>

@@ -32,7 +32,7 @@ class Category extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateCateRequest $request)
+    public function store(Request $request)
     {
         // $validator = Validator::make($request->all(), [
         //     'cate' => 'required|unique:category,name',
@@ -48,7 +48,7 @@ class Category extends Controller
         //     // 'idTeacher' => $request->username,
         // ];
             // dd($request->all());
-        CateModel::create(['name' => $request->cate]);
+        CateModel::create(['name' => $request->addCate]);
         return response()->json(['check' => true]);
     }
 

@@ -101,9 +101,10 @@ class CarController extends Controller
      */
     public function edit($id, Request $request)
     {
+        $cate = CateModel::all();
         $car = CarsModel::where('id', $id)->first();
         // dd($user);
-        return view('main.cars.update', compact('car'),);
+        return view('main.cars.update', compact('car','cate'),);
     }
 
     /**
@@ -111,15 +112,30 @@ class CarController extends Controller
      */
     public function update(Request $request, CarsModel $carsModel)
     {
-        //
+        $data = [
+            'name' => $request->name,
+            'brand' => $request->brand,
+            'cate_id' => $request->cate,
+            'seat' => $request->seat,
+            'date' => $request->date,
+            'description' => $request->description,
+            'price' => $request->price,
+        ];
+        // dd($data);
+
+        $car = CarsModel::where('id',$request->id)->update($data);
+        return redirect('/cars');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CarsModel $carsModel)
+    public function destroy(Request $request ,CarsModel $carsModel)
     {
-        //
+        CarsModel::where('id',$request->id)->delete();
+        return response()->json(['check' => true]);
+
     }
 
 
