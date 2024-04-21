@@ -69,7 +69,6 @@ class CarController extends Controller
                 'cate_id'=>$request->category,
                 'description'=>$request->description,
                 'price'=>$request->price,
-    
             ]);
         }
         CarsModel::create([

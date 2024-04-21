@@ -32,7 +32,7 @@ class Category extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateCateRequest $request)
     {
         // $validator = Validator::make($request->all(), [
         //     'cate' => 'required|unique:category,name',
