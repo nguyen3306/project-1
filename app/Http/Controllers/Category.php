@@ -48,7 +48,8 @@ class Category extends Controller
         //     // 'idTeacher' => $request->username,
         // ];
             // dd($request->all());
-        CateModel::create(['name' => $request->addCate]);
+
+        CateModel::create(['name' => $request->cate]);
         return response()->json(['check' => true]);
     }
 

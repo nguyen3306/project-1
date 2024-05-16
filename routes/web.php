@@ -29,7 +29,7 @@ Route::post('/login',[UserController::class,'login']);
 
     Route::controller(Category::class)->group(function(){
         Route::get('/cate','index');
-        Route::post('/addcate','store')->name('addcate');
+        Route::post('/addcate','store');
         Route::delete('/deleteCate', 'destroy');
         Route::post('/{id}/updateCate', 'update');
         Route::get('/export', 'export')->name('exportexcel');

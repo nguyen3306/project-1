@@ -1,7 +1,7 @@
 @extends('layout.Navbar')
 @section('Category')
 <div class="col-3">
-    <button type="submit" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#addCateModal">Thêm</button>
+    <button type="" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#addCateModal">Thêm</button>
     <button id="excel" class="btn btn-primary">download</button>
     <input type="text"name="search">
 </div>

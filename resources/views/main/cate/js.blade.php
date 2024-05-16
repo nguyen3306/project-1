@@ -1,6 +1,6 @@
 <script>
     $(document).ready(function() {
-        // addCate();
+        addCate();
         deleteCate();
         UpdateCate();
         
@@ -30,8 +30,8 @@
         });
         $('#submitbtn').on('click', function(e) {
             e.preventDefault();
-            var cate = $('.addCate').val().trim();
-            console.log('cate: ', cate)
+            var cate = $('#addCate').val().trim();
+            console.log(cate);
             $.ajax({
                 type: "post",
                 url: "/addcate",
