@@ -33,8 +33,10 @@ class RoleController extends Controller
     public function store(CreateRoleRequest $request)
     {
         // dd($request->all());
+
         RoleModel::create(['name' => $request->role]);
-        // return response()->json(['check' => true]);
+        // return view('main.role.role');
+        
         return response()->json(['check' => true]);
     }
 

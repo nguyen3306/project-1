@@ -131,4 +131,5 @@ class UserController extends Controller
         User::where('id', $request->id)->delete();
         return response()->json(['check' => true]);
     }
+    
 }

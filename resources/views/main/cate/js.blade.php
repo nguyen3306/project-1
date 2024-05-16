@@ -49,14 +49,14 @@
                             .then(() => {
                                 window.location.reload();
                             })
+                    }else{
+                        Toast.fire({
+                        icon: "error",
+                        title: res.msg.cate
+                    });
                     }
                 },
-                error: function(data) {
-                    Toast.fire({
-                        icon: "error",
-                        title: data.responseJSON.message
-                    });
-                }
+                
             });
         });
     }
@@ -129,6 +129,7 @@
                 dataType: "json",
                 success: function(res) {
                     if (res.check == true) {
+                        console.log(res);
                         Swal.fire({
                                 title: "Chỉnh sửa thành công",
                                 text: "",
@@ -137,21 +138,17 @@
                             .then(() => {
                                 window.location.reload()
                             });
-                    } else {
+                    }else{
+                        console.log(res);
                         Swal.fire({
-                            title: "Chỉnh sửa thành công",
-                            text: "",
-                            icon: "success"
-                        })
+                            title: "Chỉnh sửa thất bại",
+                            text:res.message,
+                            icon:"error"
+                            })
                     }
                 }
             });
         });
     }
-    // function closeModal() {
-    //     $('.closemodal').click(function (e) {
-    //         e.preventDefault();
-    //         $('#addCate').val('');
-    //     });
-    // }
+   
 </script>

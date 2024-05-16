@@ -3,7 +3,7 @@
 @section('cars')
     <form action="/importcars" method="post" enctype="multipart/form-data">
         @csrf
-        <input type="file" name="file" class="" placeholder="" />
+        <input type="file" name="file" class="" placeholder="" required/>
         <button class="btn btn-primary mt-1" type="submit" id="submit">Import</button>
         <button class="btn btn-primary mt-1" type="button" id="" data-bs-toggle="modal"
             data-bs-target="#ModalCar">Thêm</button>
@@ -30,7 +30,9 @@
                                 <th scope="col">Mô tả</th>
                                 <th scope="col">Giá thuê</th>
                                 <th scope="col">Hãng xe</th>
+                                <th scope="col">path</th>
                                 <th scope="col">Action</th>
+                                
 
                             </tr>
                         </thead>
@@ -47,6 +49,7 @@
                                     <td scope="row">{{ $item->description }}</td>
                                     <td scope="row">{{ $item->price }}</td>
                                     <td scope="row">{{ $item->catename }}</td>
+                                    <td scope="row" ><img width="200" src="{{asset($item->img)}}" alt=""></td>
                                     <td>
                                         <button class="btn btn-danger deleteCarbtn" data-id="{{ $item->id }}">Xóa
                                         </button>
@@ -93,10 +96,10 @@
                             <input type="text" name="date" id="date" class="form-control" id=""
                                 placeholder="từ 2015 - 2024">
                             <h4>Hãng xe</h4>
-                            <select class="form-control mb-2" name="category">
+                            <select class="form-control mb-2" name="category" id="category">
                                 @if (count($cate) > 0)
                                     @foreach ($cate as $item)
-                                        <option value="{{ $item->id }}" id="">
+                                        <option value="{{ $item->id }}">
                                             <h5>{{ $item->name }}</h5>
                                         </option>
                                     @endforeach
@@ -109,16 +112,15 @@
                             <input type="text" name="price" id="price" class="form-control" id=""
                                 placeholder="giá trị xe">
                             <h4>Hình ảnh xe</h4>
-                            <input type="file" name="image" id="image" class="form-control">
+                            <input type="file" name="image" id="image" class="form-control" required >
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="closemodal btn btn-secondary"
                                 data-bs-dismiss="modal">Đóng</button>
-                            <button type="submit" class="btn btn-primary">Thêm</button>
+                            <button type="submit" class="btn btn-primary" id="addCarbtn">Thêm</button>
                         </div>
-                    </form>
                 </div>
-
+            </form>
             </div>
         </div>
     </div>

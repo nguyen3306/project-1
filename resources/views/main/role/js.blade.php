@@ -12,7 +12,6 @@
         $('#addRolebtn').click(function(e) {
             var role = $('#addRole').val().trim();
             e.preventDefault();
-            console.log(role);
             $.ajax({
                 type: "post",
                 url: "/createRole",
@@ -21,12 +20,23 @@
                 },
                 dataType: "json",
                 success: function(res) {
+                    console.log(res);
+                    if (res.check == true) {
+                        Swal.fire({
+                            title: "thêm thành công",
+                            text: res.responseJSON.message,
+                            icon: "success"
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    }
+                },
+                error: function(res) {
+                    console.log(res);
                     Swal.fire({
-                        title: "thêm thành công",
-                        text: "",
-                        icon: "success"
-                    }).then(() => {
-                        window.location.reload();
+                        title: "thất bại",
+                        text: res.responseJSON.message,
+                        icon: "error"
                     });
                 }
             });
@@ -93,23 +103,21 @@
                     type: "post",
                     url: url,
                     data: {
-                        role:newRole
+                        role: newRole
                     },
                     dataType: "json",
-                    success: function (res) {
+                    success: function(res) {
                         Swal.fire({
-                        title: "cập nhật thành công",
-                        text: "",
-                        icon: "success"
-                    }).then(() => {
-                        window.location.reload();
-                    });
+                            title: "cập nhật thành công",
+                            text: "",
+                            icon: "success"
+                        }).then(() => {
+                            window.location.reload();
+                        });
                     }
                 });
 
             });
-
-
         });
     }
 </script>

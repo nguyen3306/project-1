@@ -26,11 +26,11 @@ class UpdateCateRequest extends FormRequest
         ];
     }
 
-    // public function messages()
-    // {
-    //     return  [
-    //         'unique' => 'Tên hãng bị trùng',
-    //         'max'=>'Tên hãng quá dài',
-    //     ];
-    // }
+    public function messages()
+    {
+        return  [
+            'unique' => 'Tên hãng bị trùng',
+            'max'=>'Tên hãng quá dài',
+        ];
+    }
 }

@@ -496,9 +496,11 @@
                 </div>
             </div>
         </div>
+       
         <div class="be-content">
             <div class="main-content container-fluid">
                 {{-- ===============================CONTENT================================================== --}}
+                 @include('layout.flash-message')
                 @yield('main')
 
 

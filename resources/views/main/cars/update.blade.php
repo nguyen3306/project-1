@@ -39,7 +39,7 @@
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
-                        
+                        <input type="file" id="files" name="files" multiple>
                     </div>
                         <button type="submit" class="btn btn-primary" id="submitUser">xác nhận</button>
                 </form>

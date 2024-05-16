@@ -18,24 +18,72 @@
     $(document).ready(function() {
         excel();
         deleteCar();
+        // addCar();
         const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 1000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-        }
-    });
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
     });
 
+    // function addCar() {
+    //     $('#addCarbtn').click(function(e) {
+    //         console.log('hi');
+    //         var name = $('#name').val().trim();
+    //         var category = $('#category option:selected').val();
+    //         var brand = $('#brand').val().trim();
+    //         var seat = $('#seat').val().trim();
+    //         var date = $('#date').val().trim();
+    //         var description = $('#description').val().trim();
+    //         var price = $('#price').val().trim();
+    //         var image = $('#image').val().trim();
+    //         e.preventDefault();
+    //         $.ajax({
+    //             type: "post",
+    //             url: "/createCar",
+    //             data: {
+    //                 name: name,
+    //                 category: category,
+    //                 brand: brand,
+    //                 seat: seat,
+    //                 date: date,
+    //                 description: description,
+    //                 price: price,
+    //                 image: image,
+    //             },
+    //             dataType: "json",
+    //             success: function(res) {
+    //                 if (res.check == true) {
+    //                     Toast.fire({
+    //                             icon: "success",
+    //                             title: "thêm xe thành công"
+    //                         })
+    //                         .then(() => {
+    //                             window.location.reload();
+    //                         })
+    //                 } else {
+    //                     Toast.fire({
+    //                         icon: "error",
+    //                         title: data.responseJSON.message
+    //                     })
+    //                 }
+
+    //             },
+    //         });
+    //     });
+    // }
 
     function deleteCar() {
         $('.deleteCarbtn').click(function(e) {
             e.preventDefault();
             id = $(this).attr('data-id');
+            path = $(this)
             console.log(id);
             Swal.fire({
                 title: "Xóa xe ?",

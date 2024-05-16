@@ -32,23 +32,18 @@ class Category extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateCateRequest $request)
+    public function store(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'cate' => 'required|unique:category,name',
-        // ],[
-        //     'cate.required'=> 'Chưa có tên loại',
-        //     'cate.unique'=> 'Tên loại bị trùng',
-        // ]);
-        // if ($validator->fails()) {
-        //     return response()->json(['check'=>false,'msg'=>$validator->errors()]);
-        // }
-        // $data = [
-        //     'name' => $request->cate,
-        //     // 'idTeacher' => $request->username,
-        // ];
-            // dd($request->all());
-
+        $validator = Validator::make($request->all(), [
+            'cate' => 'required|unique:category,name',
+        ],[
+            'cate.required'=> 'Chưa có tên hãng xe',
+            'cate.unique'=> 'Tên hãng xe bị trùng',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['check'=>false,'msg'=>$validator->errors()]);
+        }
+        
         CateModel::create(['name' => $request->cate]);
         return response()->json(['check' => true]);
     }
@@ -85,6 +80,7 @@ class Category extends Controller
     {
         // dd($request->all(),$id);
         CateModel::where('id', $id)->update(['name' => $request->cate]);
+        dd($request);
         return response()->json(['check' => true]);
     }
 

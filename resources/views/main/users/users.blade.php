@@ -35,6 +35,7 @@
                                             class="editUserName pointer"data-id="{{ $item->id }}">{{ $item->name }}</span>
                                     </td>
                                     <td scope="">{{ $item->email }}</td>
+                                    
                                     <td>{{ $item->rolename }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->address }}</td>
@@ -45,10 +46,7 @@
                                             data-id="{{ $item->id }}">Xóa</button>
                                         {{-- <a href="/detailUser/{{$item->id}}"><button class="btn btn-warning updateUserbtn"
                                         data-id="{{ $item->id }}">Sửa</button> </a> --}}
-
-
                                         <a class="btn btn-warning " href="{{route("EditUser",$item->id)}}">Sửa</a>
-
                                     </td>
                                 </tr>
                             @endforeach
@@ -103,7 +101,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
