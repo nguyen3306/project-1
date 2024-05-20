@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateCarRequest;
 use App\Imports\CarsImport;
 use App\Models\CarsModel;
 use App\Models\CateModel;
+use App\Models\img;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -124,20 +123,11 @@ class CarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CarsModel $carsModel,)
+    public function update(Request $request, CarsModel $carsModel, img $img)
     {
-
-        // dd($data);
-
         if ($request->has('image')) {
-
-
-
             $data = CarsModel::find($request->id);
             $image = $data->img;
-            // dd($image);
-            $image_path = public_path('upload/img/' . $image);
-            // dd($image_path);
             if (file::exists($image)) {
                 file::delete($image);
             }
@@ -146,7 +136,6 @@ class CarController extends Controller
             $fileName = time() . '.' . $extension;
             $path = 'upload/img/';
             $file->move($path, $fileName);
-
             $data1 = [
                 'name' => $request->name,
                 'brand' => $request->brand,
@@ -157,10 +146,6 @@ class CarController extends Controller
                 'price' => $request->price,
                 'img' => $path . $fileName,
             ];
-
-
-
-
             $car = CarsModel::where('id', $request->id)->update($data1);
         } else {
             $data = [
@@ -174,6 +159,18 @@ class CarController extends Controller
             ];
             $car = CarsModel::where('id', $request->id)->update($data);
         }
+        if ($request->has('multiplePic')) {
+            $files = [];
+
+            foreach ($request->file('multiplePic') as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $fileName = time() . '.' . $extension;
+                $path = 'upload/CarsImages';
+                dd($file);
+
+                $file->move($path, $fileName);
+            }
+        }
 
         return redirect('/cars');
     }
@@ -185,6 +182,8 @@ class CarController extends Controller
     {
         $car = CarsModel::where('id', $request->id,)->first();
         $image_path = $car->img;  // Value is not URL but directory file path
+        // dd($image_path);
+
         if (File::exists($image_path)) {
             File::delete($image_path);
         }

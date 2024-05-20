@@ -3,7 +3,7 @@
     <button type="submit" class="btn btn-primary" id="userModalbtn">Thêm</button>
 @endsection
 @section('Users')
-    CHỈNH SỬA TÀI KHOẢN
+    CHỈNH SỬA XE
 @endsection
 @section('main')
     {{-- Container --}}
@@ -39,8 +39,15 @@
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
-                        <input type="file" id="files" name="image" class="form-control" >
+                        <br>
+                        Ảnh bìa xe
+                        <input type="file" id="files" name="image"  >
                     </div>
+                    <br>
+                    Ảnh minh họa cho xe
+                    <input type="file" name="multiplePic" multiple >
+                    <br>
+                    <br>
                         <button type="submit" class="btn btn-primary" id="">xác nhận</button>
                 </form>
             </div>

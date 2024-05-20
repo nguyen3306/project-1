@@ -80,7 +80,6 @@ class Category extends Controller
     {
         // dd($request->all(),$id);
         CateModel::where('id', $id)->update(['name' => $request->cate]);
-        dd($request);
         return response()->json(['check' => true]);
     }
 

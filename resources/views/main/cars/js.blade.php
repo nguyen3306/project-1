@@ -83,7 +83,6 @@
         $('.deleteCarbtn').click(function(e) {
             e.preventDefault();
             id = $(this).attr('data-id');
-            path = $(this)
             console.log(id);
             Swal.fire({
                 title: "Xóa xe ?",

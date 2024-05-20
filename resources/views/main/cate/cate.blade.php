@@ -109,7 +109,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="closemodalCate btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" id="confirm">Thêm</button>
+                    <button type="button" class="btn btn-primary" id="confirm">Sửa</button>
                 </div>
             </div>
         </div>
