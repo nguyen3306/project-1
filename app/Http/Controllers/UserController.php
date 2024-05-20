@@ -92,11 +92,13 @@ class UserController extends Controller
      */
     public function edit($id,Request $request)
     {
-        // dd($id);
+        // $user = User::where('id', $id)->first();
         $role = RoleModel::all();
-        $user = User::where('id', $id)->first();
+        $user = DB::table('users')->join('role', 'users.role_id', '=', 'role.id')->select('users.*', 'role.name as rolename')->where('users.id', $id)->first();
+        
+
         // dd($user);
-        return view('main.users.update', compact('user','role'),);
+        return view('main.users.update', compact('user','role'));
     }
 
     /**
@@ -112,7 +114,7 @@ class UserController extends Controller
             'address' => $request->address,
         ];
         // dd($data);
-
+        
         $user = User::where('id',$request->id)->update($data);
         return redirect('/users');
 

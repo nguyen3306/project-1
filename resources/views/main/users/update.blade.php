@@ -17,14 +17,17 @@
                             value="{{ old('name', $user->id) }}" hidden>
                         Tên
                         <input type="text" name="name" class="form-control" id="UserName"
-                            value="{{ old('name', $user->name) }}">
+                            value="{{ old('name', $user->name) }}" >
                         Email
                         <input type="text" name="email" class="form-control" id="UserEmail"
-                        value="{{ old('email', $user->email) }}">
-                        Loại tài khản
+                        value="{{ old('email', $user->email) }}"readonly>
+                        Loại tài khoản hiện tại
+                        <input type="text" name="" class="form-control" id="" value="{{ old('role', $user->rolename) }}" readonly>
+                        Loại tài khản mới
                         <select name="role" class="form-control mb-2"  id="Roleid">
                             @foreach ($role as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                <option value="{{ $item->id }}">
+                                    {{ $item->name }}</option>
                             @endforeach
                         </select>
                         +84

@@ -7,7 +7,6 @@
         <button class="btn btn-primary mt-1" type="submit" id="submit">Import</button>
         <button class="btn btn-primary mt-1" type="button" id="" data-bs-toggle="modal"
             data-bs-target="#ModalCar">Thêm</button>
-
     </form>
 @endsection
 @section('cartitle')
@@ -32,8 +31,6 @@
                                 <th scope="col">Hãng xe</th>
                                 <th scope="col">ảnh</th>
                                 <th scope="col">Action</th>
-                                
-
                             </tr>
                         </thead>
                         <tbody>

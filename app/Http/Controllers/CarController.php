@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 
 class CarController extends Controller
@@ -99,7 +100,6 @@ class CarController extends Controller
 
 
         return redirect()->route('cars')->with('success', 'thành công');
-
     }
 
     /**
@@ -118,31 +118,51 @@ class CarController extends Controller
         $cate = CateModel::all();
         $car = CarsModel::where('id', $id)->first();
         // dd($user);
-        return view('main.cars.update', compact('car', 'cate'), );
+        return view('main.cars.update', compact('car', 'cate'),);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CarsModel $carsModel)
+    public function update(Request $request, CarsModel $carsModel,)
     {
-        $data = [
-            'name' => $request->name,
-            'brand' => $request->brand,
-            'cate_id' => $request->cate,
-            'seat' => $request->seat,
-            'date' => $request->date,
-            'description' => $request->description,
-            'price' => $request->price,
-        ];
+
         // dd($data);
 
         if ($request->has('image')) {
+
+
+
+            $data = CarsModel::find($request->id);
+            $image = $data->img;
+            // dd($image);
+            $image_path = public_path('upload/img/' . $image);
+            // dd($image_path);
+            if (file::exists($image)) {
+                file::delete($image);
+            }
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $fileName = time() . '.' . $extension;
             $path = 'upload/img/';
             $file->move($path, $fileName);
+
+            $data1 = [
+                'name' => $request->name,
+                'brand' => $request->brand,
+                'cate_id' => $request->cate,
+                'seat' => $request->seat,
+                'date' => $request->date,
+                'description' => $request->description,
+                'price' => $request->price,
+                'img' => $path . $fileName,
+            ];
+
+
+
+
+            $car = CarsModel::where('id', $request->id)->update($data1);
+        } else {
             $data = [
                 'name' => $request->name,
                 'brand' => $request->brand,
@@ -151,14 +171,11 @@ class CarController extends Controller
                 'date' => $request->date,
                 'description' => $request->description,
                 'price' => $request->price,
-                'img' => $request->image,
             ];
-            $car = CarsModel::where('id', $request->id)->update($data   );
-
+            $car = CarsModel::where('id', $request->id)->update($data);
         }
-        $car = CarsModel::where('id', $request->id)->update($data);
-        return redirect('/cars');
 
+        return redirect('/cars');
     }
 
     /**
@@ -166,14 +183,13 @@ class CarController extends Controller
      */
     public function destroy(Request $request, CarsModel $carsModel)
     {
-        $car = CarsModel::where('id', $request->id, )->first();
+        $car = CarsModel::where('id', $request->id,)->first();
         $image_path = $car->img;  // Value is not URL but directory file path
         if (File::exists($image_path)) {
             File::delete($image_path);
         }
         $car->delete();
         return response()->json(['check' => true]);
-
     }
 
 
