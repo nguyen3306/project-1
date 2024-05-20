@@ -30,7 +30,7 @@
                                 <th scope="col">Mô tả</th>
                                 <th scope="col">Giá thuê</th>
                                 <th scope="col">Hãng xe</th>
-                                <th scope="col">path</th>
+                                <th scope="col">ảnh</th>
                                 <th scope="col">Action</th>
                                 
 

@@ -137,6 +137,25 @@ class CarController extends Controller
         ];
         // dd($data);
 
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time() . '.' . $extension;
+            $path = 'upload/img/';
+            $file->move($path, $fileName);
+            $data = [
+                'name' => $request->name,
+                'brand' => $request->brand,
+                'cate_id' => $request->cate,
+                'seat' => $request->seat,
+                'date' => $request->date,
+                'description' => $request->description,
+                'price' => $request->price,
+                'img' => $request->image,
+            ];
+            $car = CarsModel::where('id', $request->id)->update($data   );
+
+        }
         $car = CarsModel::where('id', $request->id)->update($data);
         return redirect('/cars');
 
@@ -147,7 +166,7 @@ class CarController extends Controller
      */
     public function destroy(Request $request, CarsModel $carsModel)
     {
-        $car = CarsModel::where('id', $request->id,)->first();
+        $car = CarsModel::where('id', $request->id, )->first();
         $image_path = $car->img;  // Value is not URL but directory file path
         if (File::exists($image_path)) {
             File::delete($image_path);

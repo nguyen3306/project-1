@@ -39,9 +39,9 @@
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
-                        <input type="file" id="files" name="files" multiple>
+                        <input type="file" id="files" name="image" class="form-control" >
                     </div>
-                        <button type="submit" class="btn btn-primary" id="submitUser">xác nhận</button>
+                        <button type="submit" class="btn btn-primary" id="">xác nhận</button>
                 </form>
             </div>
         </div>
@@ -52,5 +52,5 @@
     </script>
 
 
-    @include('main.users.js')
+    @include('main.cars.js')
 @endsection
