@@ -192,12 +192,32 @@ class CarController extends Controller
     }
 
 
-    public function test()
+    public function test(Request $request, Img $Img)
     {
-        // $role = RoleModel::all();
-        // return view('main.cars.cars');
-    }
+        // if ($request->has('multiplePic')) {
+        //     foreach ($request->file('multiplePic') as $file) {
+        //         $files = [];
+        //         dd($file);
+        //         $extension = $file->getClientOriginalExtension();
+        //         $fileName = time() . '.' . $extension;
+        //         $path = 'upload/CarsImages';
+        //         dd($file);
+        //         $file->move($path, $fileName);
+        //     }
+        // }
 
+        $input = $request->file('multiplePic');
+        $images = array();
+        dd($input);
+        if ($files = $request->file('images')) {
+            foreach ($files as $file) {
+                dd($file);
+                $name = $file->getClientOriginalName();
+                $file->move('image', $name);
+                $images[] = $name;
+            }
+        }
+    }
     /**
      * Store a newly created resource in storage.
      */

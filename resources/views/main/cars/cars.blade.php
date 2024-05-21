@@ -27,7 +27,6 @@
                                 <th scope="col">Xuất xứ</th>
                                 <th scope="col">Ghế ngồi</th>
                                 <th scope="col">Đời xe</th>
-                                <th scope="col">Mô tả</th>
                                 <th scope="col">Giá thuê</th>
                                 <th scope="col">Hãng xe</th>
                                 <th scope="col">ảnh</th>
@@ -46,7 +45,6 @@
                                     <td scope="row">{{ $item->brand }}</td>
                                     <td scope="row">{{ $item->seat }}</td>
                                     <td scope="row">{{ $item->date }}</td>
-                                    <td scope="row">{{ $item->description }}</td>
                                     <td scope="row">{{ $item->price }}</td>
                                     <td scope="row">{{ $item->catename }}</td>
                                     <td scope="row" ><img width="200" src="{{asset($item->img)}}" alt=""></td>

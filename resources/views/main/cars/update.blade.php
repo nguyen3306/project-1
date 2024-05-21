@@ -44,11 +44,17 @@
                         <input type="file" id="files" name="image"  >
                     </div>
                     <br>
-                    Ảnh minh họa cho xe
-                    <input type="file" name="multiplePic" multiple >
+                    
                     <br>
                     <br>
                         <button type="submit" class="btn btn-primary" id="">xác nhận</button>
+                </form>
+
+                <form action="{{ route('test') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    Ảnh minh họa cho xe
+                    <input type="file" name="multiplePic" multiple >
+                    <button type="submit">ok</button>
                 </form>
             </div>
         </div>

@@ -60,6 +60,7 @@ Route::post('/login',[UserController::class,'login']);
         Route::post('/createCar','store');
         Route::post('/DeleteCar','destroy');
         Route::post('/importcars','import');
+        Route::post('/test','test')->name('test');
         Route::get('/{id}/editCar','edit')->name( 'EditCar' );
         Route::post('/UpdateCar','update')->name( 'UpdateCar' );
 
