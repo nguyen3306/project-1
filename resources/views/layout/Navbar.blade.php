@@ -488,10 +488,10 @@
                     </div>
                 </div>
                 <div class="progress-widget">
-                    <div class="progress-data"><span class="progress-value">10%</span><span class="name">Current
+                    <div class="progress-data"><span class="progress-value">90%</span><span class="name">Current
                             Project</span></div>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-primary" style="width: 10%;"></div>
+                        <div class="progress-bar progress-bar-primary" style="width: 90%;"></div>
                     </div>
                 </div>
             </div>
