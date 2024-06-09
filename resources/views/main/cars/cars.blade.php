@@ -36,6 +36,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             @foreach ($cars as $key => $item)
                                 <tr>
                                     <td scope="row">{{ ++$key }}</td>
@@ -49,6 +50,8 @@
                                     <td scope="row">{{ $item->catename }}</td>
                                     <td scope="row" ><img width="200" src="{{asset($item->img)}}" alt=""></td>
                                     <td>
+                                        <a class="btn btn-primary " href="{{route("OderCar",$item->id)}}">Đặt xe
+                                        </a>
                                         <button class="btn btn-danger deleteCarbtn" data-id="{{ $item->id }}">Xóa
                                         </button>
                                         <a class="btn btn-warning " href="{{route("EditCar",$item->id)}}">Sửa</a>

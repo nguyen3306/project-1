@@ -48,17 +48,33 @@
                         
                         @yield('Car')
 
-                    </span></div>
+                        @yield('oder')
 
+                        @yield('Odertitle')
 
-            
+                        @yield('Bill')
+
+                        @yield('carorder')
+
+                    </span>
+                
+                </div>
+                <div>
+                    <form action="/getCart" method="post" enctype="multipart/form-data">
+                        @csrf
+                                        <input type="text" value="1" name="id" placeholder="nhập id để tìm giỏ hàng">
+                                        <button type="submit"  class="btn btn-primary">tìm giỏ hàng</button>
+                                    </form>
+                </div>
+
+                    
                 @yield('Category')
 
                 @yield('user')
 
                 @yield('cars')
                 
-                
+                @yield('Oder')
                 {{-- @yield('schedule') --}}
 
                 {{-- @yield('process') --}}
@@ -71,8 +87,7 @@
                     <ul class="nav navbar-nav float-right be-user-nav">
                         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
                                 data-toggle="dropdown" role="button" aria-expanded="false"><img
-                                    src="{{ asset('assets\img\avatar.png') }}" alt="Avatar"><span class="user-name">Túpac
-                                    Amaru</span></a>
+                                    src="{{ asset('assets\img\avatar.png') }}" alt="Avatar"><span class="user-name">Chấn Nguyên</span></a>
                             <div class="dropdown-menu" role="menu">
                                 <div class="user-info">
                                     {{-- ======================================================= --}}
@@ -95,7 +110,7 @@
 
 
 
-                                    <div class="user-name">Túpac Amaru</div>
+                                    <div class="user-name">Chấn Nguyên</div>
                                     <div class="user-position online">Available</div>
                                 </div><a class="dropdown-item" href="pages-profile.html"><span
                                         class="icon mdi mdi-face"></span>Account</a><a class="dropdown-item"
@@ -109,7 +124,7 @@
                         <li class="nav-item dropdown"><a class="nav-link be-toggle-right-sidebar" href="#"
                                 role="button" aria-expanded="false"><span class="icon mdi mdi-settings"></span></a>
                         </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                        {{-- <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
                                 data-toggle="dropdown" role="button" aria-expanded="false"><span
                                     class="icon mdi mdi-notifications"></span><span class="indicator"></span></a>
                             <ul class="dropdown-menu be-notifications">
@@ -162,7 +177,7 @@
                                     <div class="footer"> <a href="#">View all notifications</a></div>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
                                 data-toggle="dropdown" role="button" aria-expanded="false"><span
                                     class="icon mdi mdi-apps"></span></a>
@@ -220,7 +235,7 @@
                         <div class="left-sidebar-content">
                             <ul class="sidebar-elements">
                                 <li class="divider">Menu</li>
-                                <li class="active"><a href="index.html"><i
+                                <li class="active"><a href="/"><i
                                             class="icon mdi mdi-home"></i><span>Dashboard</span></a>
                                 </li>
 
@@ -255,9 +270,9 @@
                                         </li>
                                         <li><a href="/carsImage">Car's Image</a>
                                         </li>
-                                        <li><a href="/CourseCate">CourseCate</a>
+                                        <li><a href="/Oder">Oders</a>
                                         </li>
-                                        <li><a href="ui-notifications.html">Notifications</a>
+                                        {{-- <li><a href="ui-notifications.html">Notifications</a>
                                         </li>
                                         <li><a href="ui-icons.html">Icons</a>
                                         </li>
@@ -275,10 +290,10 @@
                                         </li>
                                         <li><a href="ui-sweetalert2.html"><span
                                                     class="badge badge-primary float-right">New</span>Sweetalert 2</a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </li>
-                                <li class="parent"><a href="charts.html"><i
+                                {{-- <li class="parent"><a href="charts.html"><i
                                             class="icon mdi mdi-chart-donut"></i><span>Charts</span></a>
                                     <ul class="sub-menu">
                                         <li><a href="charts-flot.html">Flot</a>
@@ -482,7 +497,7 @@
                                 </li>
                                 <li><a href="documentation.html"><i
                                             class="icon mdi mdi-book"></i><span>Documentation</span></a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -914,7 +929,7 @@
                     App.dashboard();
 
                 });
-            </script>
+            </script> 
 </body>
 <script>
     $(document).ready(function() {

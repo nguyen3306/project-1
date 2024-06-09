@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -25,8 +26,7 @@ class UserController extends Controller
         $user = DB::table('users')->join('role', 'users.role_id', '=', 'role.id')->select('users.*', 'role.name as rolename')->get();
         // dd($user);
 
-        return view("main.users.users", compact('role','user'));
-
+        return view("main.users.users", compact('role', 'user'));
     }
 
     public function login(Request $request)
@@ -46,11 +46,16 @@ class UserController extends Controller
         }
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
             return response()->json(['check' => true]);
-            
         } else {
             return response()->json(['check' => false, 'msg' => 'Sai email hoặc mật khẩu']);
         }
+    }
 
+    public function logout()
+    {
+        Auth::logout();
+        Session::flush();
+        return redirect('/');
     }
 
     /**
@@ -90,15 +95,15 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id,Request $request)
+    public function edit($id, Request $request)
     {
         // $user = User::where('id', $id)->first();
         $role = RoleModel::all();
         $user = DB::table('users')->join('role', 'users.role_id', '=', 'role.id')->select('users.*', 'role.name as rolename')->where('users.id', $id)->first();
-        
+
 
         // dd($user);
-        return view('main.users.update', compact('user','role'));
+        return view('main.users.update', compact('user', 'role'));
     }
 
     /**
@@ -114,11 +119,9 @@ class UserController extends Controller
             'address' => $request->address,
         ];
         // dd($data);
-        
-        $user = User::where('id',$request->id)->update($data);
+
+        $user = User::where('id', $request->id)->update($data);
         return redirect('/users');
-
-
     }
 
     /**
@@ -133,5 +136,4 @@ class UserController extends Controller
         User::where('id', $request->id)->delete();
         return response()->json(['check' => true]);
     }
-    
 }

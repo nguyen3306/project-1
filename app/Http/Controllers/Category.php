@@ -22,6 +22,11 @@ class Category extends Controller
 
     }
 
+    public function show()
+    {
+        $cate = CateModel::all();
+        return response()->json($cate);
+    }
     /**
      * Show the form for creating a new resource.
      */

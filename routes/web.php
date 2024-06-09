@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\Category;
+use App\Http\Controllers\OdersController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Checklogin;
@@ -43,6 +45,8 @@ Route::post('/login',[UserController::class,'login']);
         Route::post('/DeleteUser','destroy');
         Route::get('/{id}/editUser','edit')->name( 'EditUser' );
         Route::post('/UpdateUser','update')->name('UpdateUser');
+        Route::get('/logout','logout');
+
     });
 
     Route::controller(RoleController::class)->group(function () {
@@ -62,6 +66,7 @@ Route::post('/login',[UserController::class,'login']);
         Route::post('/importcars','import');
         Route::post('/test','test')->name('test');
         Route::get('/{id}/editCar','edit')->name( 'EditCar' );
+        Route::get('/{id}/oderCar','oder')->name( 'OderCar' );
         Route::post('/UpdateCar','update')->name( 'UpdateCar' );
 
     });
@@ -69,3 +74,22 @@ Route::post('/login',[UserController::class,'login']);
     // {{route("users.abc")}};
 
 // });
+
+Route::controller(OdersController::class)->group(function () {
+    Route::get('/Oder','index');
+    // Route::get('/createRoles','create');
+    Route::post('/getOder','store')->name('getOder');
+    Route::post('/getCart','show');
+    Route::post('/deleteOder','destroy');
+    Route::post('/addtocart','update')->name('AddtoCart');
+
+});
+
+Route::controller(BillController::class)->group(function () {
+    // Route::get('/Oder','index');
+    Route::post('/paybill','update')->name('PayBill');
+    Route::get('/{id}/getBill','index')->name('getBill');
+    // Route::post('/deleteOder','destroy');
+    // Route::post('/addBill','update');
+
+});

@@ -116,8 +116,18 @@ class CarController extends Controller
     {
         $cate = CateModel::all();
         $car = CarsModel::where('id', $id)->first();
-        // dd($user);
+        // dd($car);
         return view('main.cars.update', compact('car', 'cate'),);
+    }
+
+
+    public function oder($id, Request $request)
+    {
+        $cate = CateModel::all();
+        $car = CarsModel::where('id', $id)->first();
+
+        // dd($oder);
+        return view('main.oder.carorder', compact('cate', 'car'));
     }
 
     /**
@@ -194,6 +204,7 @@ class CarController extends Controller
 
     public function test(Request $request, Img $Img)
     {
+        dd('hello');
         // if ($request->has('multiplePic')) {
         //     foreach ($request->file('multiplePic') as $file) {
         //         $files = [];
